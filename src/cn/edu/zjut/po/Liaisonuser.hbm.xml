@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Liaisonuser" schema="dbo" table="liaisonuser">
+		<id name="liaisonuserID" type="int">
+   			<column name="liaisonuserID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property  name="name" type="string">
+   			<column length="20" name="name"/>
+  		</property>
+  		<property  name="IDCard" type="string">
+   			<column length="20" name="IDCard"/>
+  		</property>
+  		<property  name="phone" type="string">
+   			<column length="20" name="phone"/>
+  		</property>
+  		<property  name="auditing" type="int">
+   			<column  name="auditing"/>
+  		</property>
+  		<many-to-one name="login" class="cn.edu.zjut.po.Login" fetch="select" unique="true" lazy="false"> 
+  			<column name="account"/> 
+  		</many-to-one> 
+  		<one-to-one name="liaison" class="cn.edu.zjut.po.Liaison" cascade="all" property-ref="liaisonuser"/> 
+  		<set name="liaisondemand" inverse="true" cascade="all" lazy="false"> 
+  			<key column="liaisonuserID"/> 
+  			<one-to-many class="cn.edu.zjut.po.Liaisondemand"/> 
+  		</set>
+ 	</class>
+</hibernate-mapping>

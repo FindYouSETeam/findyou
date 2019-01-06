@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping auto-import="false">
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Login" schema="dbo" table="login">
+		<id name="account" type="string">
+   			<column length="20" name="account"/>
+			<generator class="assigned"/>
+  		</id>
+  		<property name="password" type="string">
+  			 <column length="20" name="password" />
+ 		</property>
+  		<one-to-one name="business" class="cn.edu.zjut.po.Business" cascade="all" property-ref="login"/> 
+  		<one-to-one name="liaisonuser" class="cn.edu.zjut.po.Liaisonuser" cascade="all" property-ref="login"/> 
+ 	</class>
+</hibernate-mapping>

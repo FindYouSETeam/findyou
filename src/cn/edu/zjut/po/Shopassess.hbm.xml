@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Shopassess" schema="dbo" table="shopassess">
+		<id name="shopassessID" type="int">
+   			<column name="shopassessID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property  name="assess" type="string">
+   			<column length="100" name="assess"/>
+  		</property>
+  		<property  name="attitude" type="int">
+   			<column name="attitude"/>
+  		</property>
+  		<property  name="effect" type="int">
+   			<column name="effect"/>
+  		</property>
+  		<many-to-one name="theorder" class="cn.edu.zjut.po.Theorder" fetch="select" not-null="true" lazy="false"> 
+  			<column name="orderID"/> 
+  		</many-to-one>  
+ 	</class>
+</hibernate-mapping>
