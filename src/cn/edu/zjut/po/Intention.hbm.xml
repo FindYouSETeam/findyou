@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Intention" schema="dbo" table="intention">
+		<id name="intentionID" type="int">
+   			<column name="intentionID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property  name="applyDate" type="string">
+   			<column length="20" name="applyDate"/>
+  		</property>
+  		<property  name="status" type="string">
+   			<column length="10" name="status"/>
+  		</property>
+  		<property  name="whoApply" type="java.lang.Boolean">
+   			<column name="whoApply"/>
+  		</property>
+  		<many-to-one name="businessdemand" class="cn.edu.zjut.po.Businessdemand" fetch="select" not-null="true" lazy="false"> 
+  			<column name="businessdemandID"/> 
+  		</many-to-one> 
+  		<many-to-one name="liaisondemand" class="cn.edu.zjut.po.Liaisondemand" fetch="select" not-null="true" lazy="false"> 
+  			<column name="liaisondemandID"/> 
+  		</many-to-one> 
+ 	</class>
+</hibernate-mapping>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Theorder" schema="dbo" table="theorder">
+		<id name="orderID" type="int">
+   			<column name="orderID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property  name="startTime" type="string">
+   			<column length="30" name="startTime"/>
+  		</property>
+  		<property  name="finishTime" type="string">
+   			<column length="30" name="finishTime"/>
+  		</property>
+  		<property  name="status" type="string">
+   			<column length="20" name="status"/>
+  		</property>
+  		<many-to-one name="businessdemand" class="cn.edu.zjut.po.Businessdemand" fetch="select" not-null="true"  lazy="false"> 
+  			<column name="businessdemandID"/> 
+  		</many-to-one> 
+  		<many-to-one name="liaisondemand" class="cn.edu.zjut.po.Liaisondemand" fetch="select" not-null="true" lazy="false"> 
+  			<column name="liaisondemandID"/> 
+  		</many-to-one> 
+  		<one-to-one name="liaisonassess" class="cn.edu.zjut.po.Liaisonassess" cascade="all" property-ref="theorder"/>
+  		<one-to-one name="shopassess" class="cn.edu.zjut.po.Shopassess" cascade="all" property-ref="theorder"/>
+ 	</class>
+</hibernate-mapping>

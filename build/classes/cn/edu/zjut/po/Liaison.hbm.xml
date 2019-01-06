@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Liaison" schema="dbo" table="liaison">
+		<id name="liaisonID" type="int">
+   			<column name="liaisonID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property name="qualification" type="java.sql.Blob">
+  			 <column name="qualification"/>
+ 		</property>
+  		<property  name="departmentdetail" type="string">
+   			<column length="100" name="departmentdetail"/>
+  		</property>
+  		<property  name="address" type="string">
+   			<column length="100" name="address"/>
+  		</property>
+  		<many-to-one name="liaisonuser" class="cn.edu.zjut.po.Liaisonuser" fetch="select" unique="true" lazy="false"> 
+  			<column name="liaisonuserID"/> 
+  		</many-to-one> 
+ 	</class>
+</hibernate-mapping>

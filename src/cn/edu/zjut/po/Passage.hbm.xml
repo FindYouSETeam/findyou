@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD
+3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="cn.edu.zjut.po.Passage" schema="dbo" table="passage" catalog="RelationDBMS">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="50"/>
+        </property>
+        <property name="author" type="string">
+            <column name="author" length="10"/>
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Businessdemand" schema="dbo" table="businessdemand">
+		<id name="businessdemandID" type="int">
+   			<column name="businessdemandID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property name="publisheddate" type="string">
+  			 <column name="publisheddate" />
+ 		</property>
+  		<property  name="period" type="string">
+   			<column length="20" name="period"/>
+  		</property>
+  		<property  name="mincapital" type="string">
+   			<column length="20" name="mincapital"/>
+  		</property>
+  		<property  name="maxcapital" type="string">
+   			<column length="20" name="maxcapital"/>
+  		</property>
+  		<property  name="overallnum" type="string">
+   			<column length="20" name="overallnum"/>
+  		</property>
+  		<property  name="status" type="string">
+   			<column length="20" name="status"/>
+  		</property>
+  		<many-to-one name="business" class="cn.edu.zjut.po.Business" fetch="select"  not-null="true"  lazy="false"> 
+  			<column name="businessID"/> 
+  		</many-to-one> 
+  		<set name="intention" inverse="true" cascade="all" lazy="false"> 
+  			<key column="businessdemandID"/> 
+  			<one-to-many class="cn.edu.zjut.po.Intention"/> 
+  		</set> 
+  		<one-to-one name="theorder" class="cn.edu.zjut.po.Theorder" cascade="all" property-ref="businessdemand"/> 
+ 	</class>
+</hibernate-mapping>

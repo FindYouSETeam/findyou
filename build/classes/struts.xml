@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.ui.theme" value="simple" /> 
+	<constant name="struts.ui.templateDir" value="template" /> 
+	<constant name="struts.ui.templateSuffix" value="ftl" /> 
+	
+	
+	
+	
+	<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+	<package name="strutsBean" extends="struts-default" namespace="/">
+								<!-- 商家基础注册 -->
+		<action name="businessregisterbasic" class="cn.edu.zjut.action.UserAction" method="business_register_basic">
+			<result name="business_register_basicsuccess">/RegisterBusinessDetail.jsp</result>
+			<result name="business_register_basicfail">/fail.jsp</result>
+		</action>
+								<!-- 商家高级注册 -->
+		<action name="businessregisterdetail" class="cn.edu.zjut.action.UserAction" method="business_register_detail">
+			<result name="business_register_detailsuccess">/RegisterBusinessDetail.jsp</result>
+			<result name="business_register_detailfail">/fail.jsp</result>
+		</action>
+							<!-- 外联基础注册 -->
+		<action name="userregisterbasic" class="cn.edu.zjut.action.UserAction" method="user_register_basic">
+			<result name="user_register_basicsuccess">/RegisterUserDetail.jsp</result>
+			<result name="user_register_basicfail">/fail.jsp</result>
+		</action>
+							<!-- 外联高级注册 -->
+		<action name="userregisterdetail" class="cn.edu.zjut.action.UserAction" method="user_register_detail">
+			<result name="user_register_detailsuccess">/RegisterUserDetail.jsp</result>
+			<result name="user_register_detailfail">/fail.jsp</result>
+		</action>
+								<!-- 登录模块 -->
+		<action name="login" class="cn.edu.zjut.action.UserAction" method="login">
+			<result name="gotoliaisonuser">/Wailian/loginSsW.jsp</result>
+			<result name="gotobusiness">/Shanjia/loginSsS.jsp</result>
+			<result name="loginfail">/fail.jsp</result>
+		</action>
+		<!-- 创建外联需求 -->
+		<action name="createliademand" class="cn.edu.zjut.action.DemandAction" method="createLiaisonDemand">
+			<result name="createsuccess">/Wailian/OperateSuccess.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+		<!-- 外联对商家有意向 -->
+		<action name="createIntention" class="cn.edu.zjut.action.DemandAction" method="createIntention">
+			<result name="createsuccess">/Wailian/OperateSuccess.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+		<!-- 修改外联信息 -->
+		<action name="updateLiaisonInfo" class="cn.edu.zjut.action.UserAction" method="updateLiaisonInfo">
+			<result name="updatesuccess">/Wailian/OperateSuccess.jsp</result>
+			<result name="updatefail">/fail.jsp</result>
+		</action>
+		<!-- 显示商家对外联的请求 -->
+		<action name="findbusinessrequest" class="cn.edu.zjut.action.DemandAction" method="findbusinessrequest">
+			<result name="success">/Wailian/ToSeeW.jsp</result>
+			<result name="false">/fail.jsp</result>
+		</action>
+		<!-- 显示店铺信息 -->
+		<action name="showShopdetail" class="cn.edu.zjut.action.DemandAction" method="showShopdetail">
+			<result name="success">/Wailian/ToSeeW.jsp</result>
+		</action>
+		<!-- 关闭店铺信息 -->
+		<action name="closeShopdetail" class="cn.edu.zjut.action.DemandAction" method="closeShopdetail">
+			<result name="success">/Wailian/ToSeeW.jsp</result>
+		</action>
+		<!-- 显示外联部门信息 -->
+		<action name="showliaisondetail" class="cn.edu.zjut.action.DemandAction" method="showliaisondetail">
+			<result name="success">/Shanjia/loginSsS.jsp</result>
+		</action>
+		<!-- 关闭外联部门信息 -->
+		<action name="closeliaisondetail" class="cn.edu.zjut.action.DemandAction" method="closeliaisondetail">
+			<result name="success">/Shanjia/loginSsS.jsp</result>
+		</action>
+		<!-- 接受或同意-->
+		<action name="rejectBusinessrequestOrnot" class="cn.edu.zjut.action.DemandAction" method="rejectBusinessrequestOrnot">
+			<result name="Businesssuccess">/Shanjia/OperateSuccess.jsp</result>
+			<result name="Liaisonsuccess">/Wailian/OperateSuccess.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<!-- 寻找外联的请求 -->
+		<action name="findliaisonrequest" class="cn.edu.zjut.action.DemandAction" method="findliaisonrequest">
+			<result name="success">/Shanjia/ToSeeS.jsp</result>
+		</action>
+		<!-- 寻找所有的商家需求 点首页 -->
+		<action name="findallbusiness" class="cn.edu.zjut.action.UserAction" method="findallbusiness">
+			<result name="success">/Wailian/loginSsW.jsp</result>
+		</action>
+		<!-- 商家 点首页 -->
+		<action name="findallliaison" class="cn.edu.zjut.action.UserAction" method="findallbusiness">
+			<result name="success">/Shanjia/loginSsS.jsp</result>
+		</action>
+		<!-- 修改商家信息 -->
+		<action name="updateBusinessInfo" class="cn.edu.zjut.action.UserAction" method="updateBusinessInfo">
+			<result name="updatesuccess">/Shanjia/OperateSuccess.jsp</result>
+			<result name="updatefail">/fail.jsp</result>
+		</action>
+		<!-- 创建商家需求 -->
+		<action name="createBusinessDemand" class="cn.edu.zjut.action.DemandAction" method="createBusinessDemand">
+			<result name="createsuccess">/Shanjia/OperateSuccess.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+		<!-- 创建商家营销活动 -->
+		<action name="AddActive" class="cn.edu.zjut.action.ActiveAction" method="AddActive">
+			<result name="addsuccess">/Shanjia/OperateSuccess.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<!-- 查看商家自己的营销活动 -->
+		<action name="findMyShopActive" class="cn.edu.zjut.action.ActiveAction" method="findMyShopActive">
+			<result name="success">/Shanjia/ToSeeMyActive.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<!-- 删除商家自己的某条营销活动 -->
+		<action name="delMyShopActive" class="cn.edu.zjut.action.ActiveAction" method="delMyShopActive">
+			<result name="success">/Shanjia/OperateSuccess.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<!-- 跳转商家自己的某条营销活动修改页 -->
+		<action name="ToChangeMyShopActive" class="cn.edu.zjut.action.ActiveAction" method="ToChangeMyShopActive">
+			<result name="success">/Shanjia/ToChangeMyActive.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<!-- 修改商家自己的某条营销活动修改页 -->
+		<action name="updateShopActiveInfo" class="cn.edu.zjut.action.ActiveAction" method="updateShopActiveInfo">
+			<result name="success">/Shanjia/OperateSuccess.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+		<!-- 游客查看商家所有的营销活动 -->
+		<action name="VisiterToSeeActive" class="cn.edu.zjut.action.VisiterAction" method="VisiterToSeeActive">
+			<result name="success">/Visiter/VisiterToSeeActive.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+			<!-- 游客查看商家所有的需求 -->
+		<action name="VisiterToSeeLiaison" class="cn.edu.zjut.action.VisiterAction" method="VisiterToSeeLiaison">
+			<result name="success">/Visiter/VisiterToSeeBusiness.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+			<!-- 游客查看外联所有的需求 -->
+		<action name="VisiterToSeeBusiness" class="cn.edu.zjut.action.VisiterAction" method="VisiterToSeeBusiness">
+			<result name="success">/Visiter/VisiterToSeeLiaison.jsp</result>
+			<result name="fail">/fail.jsp</result>
+		</action>
+			<!-- 查找所有(商家或外联)自己发出的申请 -->
+		<action name="allIntention" class="cn.edu.zjut.action.IntentionAction" method="getIntentionById">
+			<result name="Liaisonsuccess">/Wailian/ToWaitW.jsp</result>
+			<result name="Businesssuccess">/Shanjia/ToWaitS.jsp</result>
+			<result name="fail">fail.jsp</result>
+		</action>
+			<!-- 撤销某个自己发出的申请 -->
+		<action name="cancelIntention" class="cn.edu.zjut.action.IntentionAction" method="cancelIntention">
+			<result name="success">/Wailian/OperateSuccess.jsp</result>
+		</action>
+			<!-- 查看商家或外联所有已完成的订单 -->
+		<action name="getOrderDone" class="cn.edu.zjut.action.TheorderAction" method="getOrderDone">
+			<result name="Liaisonsuccess">/Wailian/ToSeeOrderDoneW.jsp</result>
+			<result name="Businesssuccess">/Shanjia/ToSeeOrderDoneS.jsp</result>
+			<result name="fail">fail.jsp</result>
+		</action>
+			<!-- 查看商家或外联所有进行中的订单 -->
+		<action name="getOrderDoing" class="cn.edu.zjut.action.TheorderAction" method="getOrderDoing">
+			<result name="Liaisonsuccess">/Wailian/ToSeeOrderDoingW.jsp</result>
+			<result name="Businesssuccess">/Shanjia/ToSeeOrderDoingS.jsp</result>
+			<result name="fail">fail.jsp</result>
+		</action>
+			<!-- 把进行中订单确认完成 -->
+		<action name="finishOrder" class="cn.edu.zjut.action.TheorderAction" method="finishOrder">
+			<result name="success">/orderDoing.jsp</result>
+		</action>
+		<!-- 跳转到评价商家页面 -->
+		<action name="GoCreateShopAssess" class="cn.edu.zjut.action.UserAction" method="GoCreateShopAssess">
+			<result name="createsuccess">/Wailian/assessForBusiness.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+			<!-- 评价商家 -->
+		<action name="CreateShopAssess" class="cn.edu.zjut.action.UserAction" method="CreateShopAssess">
+			<result name="createsuccess">/Wailian/OperateSuceess.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+			<!--跳到评价外联页面 -->
+		<action name="GoCreateLiaisonAssess" class="cn.edu.zjut.action.UserAction" method="GoCreateLiaisonAssess">
+			<result name="createsuccess">/Shanjia/assessForLiaison.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+			<!-- 评价外联 -->
+		<action name="CreateLiaisonAssess" class="cn.edu.zjut.action.UserAction" method="CreateLiaisonAssess">
+			<result name="createsuccess">/Shanjia/OperateSuccess.jsp</result>
+			<result name="createfail">/fail.jsp</result>
+		</action>
+			<!--退出登录 -->
+		<action name="exit" class="cn.edu.zjut.action.UserAction" method="exit">
+			<result name="success">/Main.jsp</result>
+		</action>
+			<!--查看具体某个外联互助 -->
+		 <action name="passage" class="cn.edu.zjut.action.PassageAction">
+            <result name="success">/Wailian/passageShow.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+        	<!--查看外联互助页面 -->
+        <action name="plist" class="cn.edu.zjut.action.PassageListAction">
+            <result name="success">/Wailian/passageList.jsp</result>
+            <result name="error">/error.jsp</result>
+        </action>
+	</package>
+</struts>

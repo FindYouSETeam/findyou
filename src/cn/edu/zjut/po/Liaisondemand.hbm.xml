@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Liaisondemand" schema="dbo" table="liaisondemand">
+		<id name="liaisondemandID" type="int">
+   			<column name="liaisondemandID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property name="publisheddate" type="string">
+  			 <column  name="publisheddate" />
+ 		</property>
+  		<property  name="period" type="string">
+   			<column length="20" name="period"/>
+  		</property>
+  		<property  name="activityname" type="string">
+   			<column length="40" name="activityname"/>
+  		</property>
+  		<property  name="mincapital" type="string">
+   			<column length="20" name="mincapital"/>
+  		</property>
+  		<property  name="maxcapital" type="string">
+   			<column length="20" name="maxcapital"/>
+  		</property>
+  		<property  name="activitydetail" type="string">
+   			<column length="400" name="activitydetail"/>
+  		</property>
+  		<property  name="overallnum" type="string">
+   			<column length="20" name="overallnum"/>
+  		</property>
+  		<property  name="status" type="string">
+   			<column length="20" name="status"/>
+  		</property>
+  		<property  name="conductdetail" type="string">
+   			<column length="200" name="conductdetail"/>
+  		</property>
+  		<property  name="type" type="string">
+   			<column length="20" name="type"/>
+  		</property>
+  		<many-to-one name="liaisonuser" class="cn.edu.zjut.po.Liaisonuser" fetch="select"  not-null="true"  lazy="false"> 
+  			<column name="liaisonuserID"/> 
+  		</many-to-one> 
+  		<set name="intention" inverse="true" cascade="all" lazy="false"> 
+  			<key column="liaisondemandID"/> 
+  			<one-to-many class="cn.edu.zjut.po.Intention"/> 
+  		</set> 
+  		<one-to-one name="theorder" class="cn.edu.zjut.po.Theorder" cascade="all" property-ref="liaisondemand"/> 
+ 	</class>
+</hibernate-mapping>

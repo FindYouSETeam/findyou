@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping >
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Shop" schema="dbo" table="shop">
+		<id name="shopID" type="int">
+   			<column name="shopID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property  name="shopname" type="string">
+   			<column length="100" name="shopname"/>
+  		</property>
+  		<property name="qualification" type="java.sql.Blob">
+  			 <column name="qualification"/>
+ 		</property>
+ 		<property  name="shoptype" type="string">
+   			<column length="20" name="shoptype"/>
+   		</property>
+  		<property  name="shopdetail" type="string">
+   			<column length="200" name="shopdetail"/>
+  		</property>
+  		<property  name="shopfront" type="java.sql.Blob">
+   			<column name="shopfront"/>
+  		</property>
+  		<property  name="address" type="string">
+   			<column length="100" name="address"/>
+  		</property>
+  		<many-to-one name="business" class="cn.edu.zjut.po.Business" fetch="select" unique="true" lazy="false"> 
+  			<column name="businessID"/> 
+  		</many-to-one> 
+ 	</class>
+</hibernate-mapping>

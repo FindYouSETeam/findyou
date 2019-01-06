@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/HibernateMappingDTD 3.0//EN"
+                                   "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class catalog="RelationDBMS" name="cn.edu.zjut.po.Business" schema="dbo" table="business">
+		<id name="businessID" type="int">
+   			<column name="businessID"/>
+			<generator class="increment"/>
+  		</id>
+  		<property  name="name" type="string">
+   			<column length="20" name="name"/>
+  		</property>
+  		<property  name="IDCard" type="string">
+   			<column length="20" name="IDCard"/>
+  		</property>
+  		<property  name="phone" type="string">
+   			<column length="20" name="phone"/>
+  		</property>
+  		<property  name="auditing" type="boolean">
+   			<column  name="auditing"/>
+  		</property>
+  		<many-to-one name="login" class="cn.edu.zjut.po.Login" fetch="select" unique="true" lazy="false"> 
+  			<column name="account"/> 
+  		</many-to-one> 
+  		<set name="businessdemand" inverse="true" cascade="all" lazy="false"> 
+  			<key column="businessID"/> 
+  			<one-to-many class="cn.edu.zjut.po.Businessdemand"/> 
+  		</set> 
+ 		<one-to-one name="shop" class="cn.edu.zjut.po.Shop" cascade="all" property-ref="business"/> 
+ 	</class>
+</hibernate-mapping>
