@@ -6,7 +6,7 @@ import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class ShopassessDAO extends BaseHibernateDAO{
+public class ShopassessDAO extends BaseHibernateDAO implements IShopassessDAO{
 	private Log log = LogFactory.getLog(ShopassessDAO.class);
 	public void save(Shopassess instance) {
 		log.debug("saving ShopassessDAO instance");

@@ -8,34 +8,31 @@ public class Business {
 	private String name;
 	private String IDCard;
 	private String phone;
-	private boolean auditing;
+	private int auditing;
 	private Login login;
 	private Shop shop;
-	private Set businessdemand = new HashSet(0); 
-
-	public String getIDCard() {
-		return IDCard;
+	private Set businessdemand = new HashSet(0);
+	
+	
+	public Business() {
+		super();
 	}
-	public void setIDCard(String iDCard) {
-		IDCard = iDCard;
-	}
-	public Business() {}
 	public Business(int businessID) {
 		super();
 		this.businessID = businessID;
 	}
-	public Business(int businessID, String name, String iDCard, String phone, boolean auditing,Login login,Shop shop,Set businessdemand) {
+	public Business(int businessID, String name, String iDCard, String phone, int auditing, Login login, Shop shop,
+			Set businessdemand) {
 		super();
 		this.businessID = businessID;
 		this.name = name;
 		IDCard = iDCard;
 		this.phone = phone;
 		this.auditing = auditing;
-		this.login=login;
-		this.shop=shop;
-		this.businessdemand=businessdemand;
+		this.login = login;
+		this.shop = shop;
+		this.businessdemand = businessdemand;
 	}
-	
 	public int getBusinessID() {
 		return businessID;
 	}
@@ -48,16 +45,22 @@ public class Business {
 	public void setName(String name) {
 		this.name = name;
 	}
+	public String getIDCard() {
+		return IDCard;
+	}
+	public void setIDCard(String iDCard) {
+		IDCard = iDCard;
+	}
 	public String getPhone() {
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public boolean getAuditing() {
+	public int getAuditing() {
 		return auditing;
 	}
-	public void setAuditing(boolean auditing) {
+	public void setAuditing(int auditing) {
 		this.auditing = auditing;
 	}
 	public Login getLogin() {
@@ -66,7 +69,6 @@ public class Business {
 	public void setLogin(Login login) {
 		this.login = login;
 	}
-
 	public Shop getShop() {
 		return shop;
 	}
@@ -78,5 +80,7 @@ public class Business {
 	}
 	public void setBusinessdemand(Set businessdemand) {
 		this.businessdemand = businessdemand;
-	}	
+	} 
+
+	
 }

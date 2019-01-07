@@ -9,7 +9,7 @@ public class Liaisonuser {
 	private String name;
 	private String IDCard;
 	private String phone;
-	private boolean auditing;
+	private int auditing;
 	private Login login;
 	private Liaison liaison;
 	private Set liaisondemand=new HashSet(0);
@@ -19,16 +19,18 @@ public class Liaisonuser {
 		super();
 		this.liaisonuserID = liaisonuserID;
 	}
-	public Liaisonuser(int liaisonuserID, String name, String iDCard, String phone, boolean auditing,Login login,Liaison liaison,Set liaisondemand) {
+	
+	public Liaisonuser(int liaisonuserID, String name, String iDCard, String phone, int auditing, Login login,
+			Liaison liaison, Set liaisondemand) {
 		super();
 		this.liaisonuserID = liaisonuserID;
 		this.name = name;
 		IDCard = iDCard;
 		this.phone = phone;
 		this.auditing = auditing;
-		this.login=login;
-		this.liaison=liaison;
-		this.liaisondemand=liaisondemand;
+		this.login = login;
+		this.liaison = liaison;
+		this.liaisondemand = liaisondemand;
 	}
 	public int getLiaisonuserID() {
 		return liaisonuserID;
@@ -54,10 +56,10 @@ public class Liaisonuser {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public boolean isAuditing() {
+	public int getAuditing() {
 		return auditing;
 	}
-	public void setAuditing(boolean auditing) {
+	public void setAuditing(int auditing) {
 		this.auditing = auditing;
 	}
 	public Login getLogin() {
@@ -78,5 +80,5 @@ public class Liaisonuser {
 	public void setLiaisondemand(Set liaisondemand) {
 		this.liaisondemand = liaisondemand;
 	}
-	
+
 }

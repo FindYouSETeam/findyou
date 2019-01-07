@@ -16,6 +16,9 @@ import cn.edu.zjut.po.Liaisonuser;
 import cn.edu.zjut.po.Shopactive;
 import cn.edu.zjut.service.ActiveService;
 import cn.edu.zjut.service.DemandService;
+import cn.edu.zjut.service.IActiveService;
+import cn.edu.zjut.service.IDemandService;
+import cn.edu.zjut.service.IUserService;
 import cn.edu.zjut.service.UserService;
 
 public class VisiterAction {
@@ -27,6 +30,17 @@ public class VisiterAction {
 	private List AllshopactiveList;
 	private List demandlist;
 	private List liaisondemandlist;
+	
+	private IActiveService activeService=null;
+	private IUserService userService =null;
+
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
+	public void setActiveService(IActiveService activeService) {
+		this.activeService = activeService;
+	}
+	
 	public List getAllshopactiveList() {
 		return AllshopactiveList;
 	}
@@ -45,24 +59,26 @@ public class VisiterAction {
 	public void setLiaisondemandlist(List liaisondemandlist) {
 		this.liaisondemandlist = liaisondemandlist;
 	}
-	public String VisiterToSeeActive()  //显示所有的营销活动
+	
+	
+	public String VisiterToSeeActive()   //显示所有的营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		AllshopactiveList=activeService.findAllShopActive();
 		return "success";		
 	}
 	public String VisiterToSeeLiaison()   //外联页面点击首页显示所有的商家列表
 	{
-		DemandService demandServ=new DemandService();
-		UserService userServ=new UserService();
-		demandlist=userServ.findallbusinessService();
+		//DemandService demandServ=new DemandService();
+		//UserService userServ=new UserService();
+		demandlist=userService.findallbusinessService();
 		return "success";
 	}
 	public String VisiterToSeeBusiness()   //游客查看所有的外联列表
 	{
-		DemandService demandServ=new DemandService();
-		UserService userServ=new UserService();
-		demandlist=userServ.findliaisonService();
+		//DemandService demandServ=new DemandService();
+		//UserService userServ=new UserService();
+		demandlist=userService.findliaisonService();
 		return "success";
 	}
 

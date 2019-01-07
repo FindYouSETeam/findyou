@@ -17,6 +17,8 @@ import cn.edu.zjut.po.Liaisondemand;
 import cn.edu.zjut.po.Liaisonuser;
 import cn.edu.zjut.po.Shop;
 import cn.edu.zjut.service.DemandService;
+import cn.edu.zjut.service.IDemandService;
+import cn.edu.zjut.service.IUserService;
 import cn.edu.zjut.service.UserService;
 
 public class DemandAction {
@@ -27,6 +29,17 @@ public class DemandAction {
 	private Liaisondemand liaisondemand;
 	private Businessdemand businessdemand;
 	private LiaisonDetail liaisondetail;
+	private List historybusinessdemandlist;
+	private List historyliaisondemandlist;
+	private IDemandService demandService=null;
+	private IUserService userService=null;
+	public void setDemandService(IDemandService demandService) {
+		this.demandService = demandService;
+	}
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
+	}
+	
 	public LiaisonDetail getLiaisondetail() {
 		return liaisondetail;
 	}
@@ -123,9 +136,23 @@ public class DemandAction {
 	public void setLiaisondemand(Liaisondemand liaisondemand) {
 		this.liaisondemand = liaisondemand;
 	}
+	
+	
+	public List getHistorybusinessdemandlist() {
+		return historybusinessdemandlist;
+	}
+	public void setHistorybusinessdemandlist(List historybusinessdemandlist) {
+		this.historybusinessdemandlist = historybusinessdemandlist;
+	}
+	public List getHistoryliaisondemandlist() {
+		return historyliaisondemandlist;
+	}
+	public void setHistoryliaisondemandlist(List historyliaisondemandlist) {
+		this.historyliaisondemandlist = historyliaisondemandlist;
+	}
 	public String createLiaisonDemand()   //创建外联意向
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		if(demandService.saveliaDemandService(liaisondemand))
 		{
 			return "createsuccess";
@@ -135,7 +162,7 @@ public class DemandAction {
 	
 	public String createBusinessDemand()   //创建商家意向
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		if(demandService.savebusinessDemandService(businessdemand))
 		{
 			System.out.println("creat");
@@ -145,12 +172,12 @@ public class DemandAction {
 	}
 	
 	
-	public String createIntention()   //外联对商家有意向
+	public String createIntention()  //外联对商家有意向
 	{
-		UserService userServ=new UserService();
-		Businessdemand businessdemand=userServ.findBusinessdemandbyID(Integer.parseInt(businessdemandID));
-		Liaisondemand liaisondemand =userServ.findLiaisondemandbyID(Integer.parseInt(liaisondemandID));
-		DemandService demandService=new DemandService();
+		//UserService userServ=new UserService();
+		Businessdemand businessdemand=userService.findBusinessdemandbyID(Integer.parseInt(businessdemandID));
+		Liaisondemand liaisondemand =userService.findLiaisondemandbyID(Integer.parseInt(liaisondemandID));
+		//DemandService demandService=new DemandService();
 		if(demandService.createIntention(businessdemand, liaisondemand))
 		{
 			return "createsuccess";
@@ -159,24 +186,24 @@ public class DemandAction {
 	}
 	public void showLiasondemand()   //展示外联已有意向
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		liaisonList=demandService.findliaisondemand();
 	}
 	public String findbusinessrequest()    //显示商家对外联的请求
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		businessrequestList=demandService.findbusinessrequest();
 		return "success";
 	}
 	public String findliaisonrequest()    //显示外联对商家的请求
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		liaisonrequestList=demandService.findliaisonrequest();
 		return "success";
 	}
 	public String rejectBusinessrequestOrnot() //拒绝或接受
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		Business business=(Business) application.getAttribute("business");
 	    Liaisonuser liaisonuser=(Liaisonuser) application.getAttribute("liaisonuser");
 	        if(business!=null)
@@ -205,14 +232,14 @@ public class DemandAction {
 	}
 	public String shouwLiaisondetail()  //显示外联的详细信息
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		Liaison liaison=demandService.findLiaisonbyID(Integer.parseInt(liaisonID));
 		application.setAttribute("liaison", liaison);
 		return "success";
 	}
 	public String showShopdetail()  //显示店铺的详细信息
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		Shop shop=demandService.findShopbyID(Integer.parseInt(shopID));
 		application.setAttribute("shop", shop);
 		businessrequestList=demandService.findbusinessrequest();
@@ -221,31 +248,73 @@ public class DemandAction {
 	public String closeShopdetail()  //关闭店铺的详细信息
 	{
 		Shop s=new Shop();
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		application.setAttribute("shop", s);
 		businessrequestList=demandService.findbusinessrequest();
 		return "success";
 	}
 	public String showliaisondetail()  //显示外联的详细信息
 	{
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		System.out.println("进入action");
 		LiaisonDetail liaisonDetail=demandService.findliaisonbyID(Integer.parseInt(liaisonuserID));
 		System.out.println("获取到");
 		System.out.println(liaisonDetail.getAddress());
 		System.out.println(liaisonDetail.getPhone());
 		application.setAttribute("LiaisonDetail", liaisonDetail);
-		UserService userServ=new UserService();
-		demandlist=userServ.findliaisonService(); 
+		//UserService userServ=new UserService();
+		demandlist=userService.findliaisonService(); 
 		return "success";
 	}
-	public String closeliaisondetail()  //关闭外联的详细信息
+	public String closeliaisondetail()   //关闭外联的详细信息
 	{
 		LiaisonDetail liaisonDetail=new LiaisonDetail();
-		DemandService demandService=new DemandService();
+		//DemandService demandService=new DemandService();
 		application.setAttribute("LiaisonDetail", liaisonDetail);
-		UserService userServ=new UserService();
-		demandlist=userServ.findliaisonService(); 
+		//UserService userServ=new UserService();
+		demandlist=userService.findliaisonService(); 
 		return "success";
+	}
+	public String liaisoncreateIntention()   //外联对商家有意向
+	{
+		//UserService userServ=new UserService();
+		Businessdemand businessdemand=userService.findBusinessdemandbyID(Integer.parseInt(businessdemandID));
+		Liaisondemand liaisondemand =userService.findLiaisondemandbyID(Integer.parseInt(liaisondemandID));
+		//DemandService demandService=new DemandService();
+		if(demandService.createIntention(businessdemand, liaisondemand))
+		{
+			return "liaisoncreatesuccess";
+		}
+		else return "creatfail";
+	}
+	public String businesscreateIntention()   //商家对外联有意向
+	{
+		//UserService userServ=new UserService();
+		Businessdemand businessdemand=userService.findBusinessdemandbyID(Integer.parseInt(businessdemandID));
+		Liaisondemand liaisondemand =userService.findLiaisondemandbyID(Integer.parseInt(liaisondemandID));
+		//DemandService demandService=new DemandService();
+		if(demandService.createIntention(businessdemand, liaisondemand))
+		{
+			return "businesscreatesuccess";
+		}
+		else return "creatfail";
+	}
+	public String seehistoryliaisondemand()   //外联查看发布的历史订单
+	{
+		//UserService userServ=new UserService();
+		Liaisonuser liaisonuser=(Liaisonuser ) application.getAttribute("liaisonuser");
+		int liaisonID=liaisonuser.getLiaisonuserID();
+		System.out.println("busineesID"+liaisonID);
+		historyliaisondemandlist=userService.findliaisondemandbyliaisonID(liaisonID);
+		return "seesuccess";
+	}
+	public String seehistorybusinessdemand()   //商家查看发布的历史订单
+	{
+		//UserService userServ=new UserService();
+		Business business=(Business) application.getAttribute("business");
+		int businessID=business.getBusinessID();
+		System.out.println("busineesID"+businessID);
+		historybusinessdemandlist=userService.findBusinessdemandbybussinessID(businessID);
+		return "seesuccess";
 	}
 }

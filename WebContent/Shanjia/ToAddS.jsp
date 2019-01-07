@@ -209,6 +209,7 @@ td
 		<li class="liL"><a class="aL" href="allIntention.action">申请记录</a></li>
 		<li class="flip"><a class="aL" href="javascript:void(0);" >历史订单</a></li>
 		<div class=show>
+			<li class="liL"><a class="aL" href="seehistorybusinessdemand.action" >已发布内容</a></li>
 			<li class="liL"><a class="aL" href="getOrderDoing.action" >进行中订单</a></li>
 			<li class="liL"><a class="aL" href="getOrderDone.action" >已完成订单</a></li>
 		</div>

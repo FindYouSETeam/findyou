@@ -6,7 +6,7 @@ import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class LoginDAO extends BaseHibernateDAO{
+public class LoginDAO extends BaseHibernateDAO implements ILoginDAO{
 	private Log log = LogFactory.getLog(LoginDAO.class);
 	public void save(Login instance) {
 		log.debug("saving Login instance");

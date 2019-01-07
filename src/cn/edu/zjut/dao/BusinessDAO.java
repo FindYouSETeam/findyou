@@ -6,7 +6,7 @@ import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class BusinessDAO extends BaseHibernateDAO{
+public class BusinessDAO extends BaseHibernateDAO implements IBusinessDAO{
 	private Log log = LogFactory.getLog(BusinessDAO.class);
 	public void save(Business instance) {
 		log.debug("saving Business instance");

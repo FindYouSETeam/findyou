@@ -7,7 +7,7 @@ import org.apache.commons.logging.LogFactory;
 import org.hibernate.Query;
 
 import cn.edu.zjut.po.*;
-public class ActiveDAO extends BaseHibernateDAO{
+public class ActiveDAO extends BaseHibernateDAO implements IActiveDAO {
 	private Log log = LogFactory.getLog(ActiveDAO.class);
 	public void save(Shopactive instance) 
 	{

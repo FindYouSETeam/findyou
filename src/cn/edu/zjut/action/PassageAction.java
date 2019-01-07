@@ -1,6 +1,7 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.Passage;
+import cn.edu.zjut.service.IPassageService;
 import cn.edu.zjut.service.PassageService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
@@ -15,8 +16,13 @@ import java.io.InputStreamReader;
 public class PassageAction extends ActionSupport {
     Passage now;
     long id;
+    private IPassageService passageService = null;
+    
+    public void setPassageService(IPassageService passageService) {
+		this.passageService = passageService;
+	}
 
-    public Passage getNow() {
+	public Passage getNow() {
         return now;
     }
 
@@ -25,14 +31,8 @@ public class PassageAction extends ActionSupport {
     }
 
     void init(){
-        /*
-
-        final String title = "99%的人都不知道！外联赞助竟然应该这么拉！";
-        now=new Passage();
-        now.setTitle(title);
-*/
         final String position="/passage/"+id+".txt";
-        PassageService passageService = new PassageService();
+        //PassageService passageService = new PassageService();
         now=(Passage) passageService.query(id);
         // Read from file
         HttpServletRequest request=ServletActionContext.getRequest();

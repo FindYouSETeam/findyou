@@ -2,12 +2,14 @@ package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.Business;
 import cn.edu.zjut.po.Liaisonuser;
+import cn.edu.zjut.service.IIntentionService;
 import cn.edu.zjut.service.IntentionService;
 import java.io.PrintStream;
 import java.util.List;
 import javax.servlet.ServletContext;
 import javax.servlet.http.*;
 import org.apache.struts2.ServletActionContext;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public class IntentionAction
 {
@@ -17,8 +19,14 @@ public class IntentionAction
     HttpSession session= ServletActionContext.getRequest().getSession();
     List allIntention;
     int intentionID;
+   
     
-    //getter��setter
+    private IIntentionService intentionService = null;
+	public void setIntentionService(IIntentionService intentionService) {
+		this.intentionService = intentionService;
+	}
+
+	//getter和setter
     public List getAllIntention()
     {
         return allIntention;
@@ -39,10 +47,10 @@ public class IntentionAction
         this.intentionID = intentionID;
     }
     
-    //����BusinessID����liaisionuserID��ȡ�����б�
+    //根据ID查找intention
     public String getIntentionById()
     {
-        IntentionService intenServ = new IntentionService();
+        //IntentionService intenServ = new IntentionService();
         Business business=(Business) application.getAttribute("business");
         Liaisonuser liaisonuser=(Liaisonuser) application.getAttribute("liaisonuser");
         if(business!=null)
@@ -51,7 +59,7 @@ public class IntentionAction
         	if(business.getName()!=null)
         	{
         		System.out.println("是商家");
-            	allIntention = intenServ.getIntentionByBID();
+            	allIntention = intentionService.getIntentionByBID();
             	return "Businesssuccess";
         	}
         	
@@ -61,22 +69,22 @@ public class IntentionAction
         	if(liaisonuser.getName()!=null)
         	{
         		System.out.println("是外联");
-            	allIntention = intenServ.getIntentionByLID();
+            	allIntention = intentionService.getIntentionByLID();
             	return "Liaisonsuccess";
         	}
         }
         return "failed";
     }
     
-    //ȡ������
+    //取消申请
     public String cancelIntention()
     {
         //System.out.println("action1"); 
         intentionID = Integer.parseInt(request.getParameter("intentionID"));
         //System.out.println("action2");
-        IntentionService intenServ = new IntentionService();
+        //IntentionService intenServ = new IntentionService();
         //System.out.println("action3");
-        if(intenServ.cancelIntention(intentionID))
+        if(intentionService.cancelIntention(intentionID))
         {
         	 getIntentionById();
         	 return "success";

@@ -6,7 +6,7 @@ import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class IntentionDAO extends BaseHibernateDAO{
+public class IntentionDAO extends BaseHibernateDAO implements IIntentionDAO{
 	private Log log = LogFactory.getLog(IntentionDAO.class);
 	public void save(Intention instance) {
 		log.debug("saving Intention instance");

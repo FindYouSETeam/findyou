@@ -1,12 +1,14 @@
 package cn.edu.zjut.dao;
 import java.util.List;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class BusinessdemandDAO extends BaseHibernateDAO{
+public class BusinessdemandDAO extends BaseHibernateDAO implements IBusinessdemandDAO{
 	private Log log = LogFactory.getLog(BusinessdemandDAO.class);
 	public void save(Businessdemand instance) {
 		log.debug("saving Businessdemand instance");

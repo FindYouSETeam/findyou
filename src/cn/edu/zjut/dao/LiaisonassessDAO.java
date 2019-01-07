@@ -6,7 +6,7 @@ import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class LiaisonassessDAO extends BaseHibernateDAO{
+public class LiaisonassessDAO extends BaseHibernateDAO implements ILiaisonassessDAO{
 	private Log log = LogFactory.getLog(LiaisonassessDAO.class);
 	public void save(Liaisonassess instance) {
 		log.debug("saving Liaisonassess instance");

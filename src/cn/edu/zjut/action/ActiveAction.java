@@ -16,6 +16,7 @@ import cn.edu.zjut.po.Liaisonuser;
 import cn.edu.zjut.po.Shopactive;
 import cn.edu.zjut.service.ActiveService;
 import cn.edu.zjut.service.DemandService;
+import cn.edu.zjut.service.IActiveService;
 import cn.edu.zjut.service.UserService;
 
 public class ActiveAction {
@@ -26,6 +27,11 @@ public class ActiveAction {
 	private Shopactive shopactive;
 	private List shopactiveList;
 	private List AllshopactiveList;
+	private IActiveService activeService=null;
+	
+	public void setActiveService(IActiveService activeService) {
+		this.activeService = activeService;
+	}
 	public List getAllshopactiveList() {
 		return AllshopactiveList;
 	}
@@ -51,9 +57,11 @@ public class ActiveAction {
 	public void setShopactiveList(List shopactiveList) {
 		this.shopactiveList = shopactiveList;
 	}
-	public String AddActive()   //创建商家营销活动
+	
+	
+	public String AddActive()   //创建商家营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		if(activeService.AddActive(shopactive))
 		{
 			System.out.println("add");
@@ -61,30 +69,30 @@ public class ActiveAction {
 		}
 		else return "fail";
 	}
-	public String findMyShopActive()  //显示自己的营销活动
+	public String findMyShopActive()  //显示自己的营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		shopactiveList=activeService.findMyShopActive();
 		return "success";		
 	}
-	public String VisterToSeeActive()  //显示所有的营销活动
+	public String VisterToSeeActive()  //显示所有的营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		AllshopactiveList=activeService.findAllShopActive();
 		return "success";		
 	}
-	public String delMyShopActive()  //删除自己的营销活动
+	public String delMyShopActive() //删除自己的营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		shopactive=activeService.findbyID(Integer.parseInt(shopactiveID));
 		if(activeService.delMyShopActive(shopactive))
 			return "success";
 		else
 			return "fail";
 	}
-	public String updateShopActiveInfo()  //修改自己的营销活动
+	public String updateShopActiveInfo() //修改自己的营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		if(activeService.updateShopActiveInfo(shopactive))
 			return "success";
 		else
@@ -92,7 +100,7 @@ public class ActiveAction {
 	}
 	public String ToChangeMyShopActive()  //跳转到某个营销活动
 	{
-		ActiveService activeService=new ActiveService();
+		//ActiveService activeService=new ActiveService();
 		shopactive=activeService.findbyID(Integer.parseInt(shopactiveID));
 		return "success";
 	}

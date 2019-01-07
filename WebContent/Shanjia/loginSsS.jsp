@@ -211,6 +211,7 @@ a,a:hover
 }
 #showdiv /* 弹窗 */
 {
+	overflow: scroll;
 	width: 360px; 
 	height: 360px;
 	position: fixed ; 
@@ -354,6 +355,7 @@ display:none;
 		<li class="liL"><a class="aL" href="allIntention.action">申请记录</a></li>
 		<li class="flip"><a class="aL" href="javascript:void(0);" >历史订单</a></li>
 		<div class=show>
+			<li class="liL"><a class="aL" href="seehistorybusinessdemand.action" >已发布内容</a></li>
 			<li class="liL"><a class="aL" href="getOrderDoing.action" >进行中订单</a></li>
 			<li class="liL"><a class="aL" href="getOrderDone.action" >已完成订单</a></li>
 		</div>
@@ -361,7 +363,7 @@ display:none;
 	</ul>
 	<div class="Main-Content">
 		<div class="Card-Head"> <!-- 卡片头 -->
-			<h3 class="Card-Head-Title">现有商家待接订单</h3>
+			<h3 class="Card-Head-Title">现有外联待接订单</h3>
 		</div>
 		<div class="Card-Body" >
 		<table class="Card-Body-Table">
@@ -382,9 +384,10 @@ display:none;
 				<td><s:property value="maxcapital"/></td>
 				<td><s:property value="overallnum"/></td>
 				<td><s:property value="publisheddate"/></td>
-				<td><a href="javascript:void(0);" onclick="showWindow('<s:property value=""/>')">有意向</a></td>
+				<td><a href="javascript:void(0);" onclick="showWindow('<s:property value="liaisondemandID"/>')">有意向</a></td>
 			</tr>
 			</s:iterator>
+
 		</table>
 		</div>
 	</div>
@@ -406,11 +409,11 @@ display:none;
     		<div style="padding-left: 40px;padding-bottom: 20px;"><a href="/FindYou/Shanjia/ToAddS.jsp" style="font-size:20px">新建需求</a></div>
     		<input type="hidden" name="liaisondemandID" id="liaisondemandID" >
        	 <table class="Center-Form">
-	       	 <s:iterator value="liaisondemandlist"  >
+	       	 <s:iterator value="businessdemandlist"  >
 				<tr>
 					<td><input type="hidden" name="businessdemandID" id="businessdemandID_<s:property value="businessdemandID"/>" value='<s:property value="businessdemandID"/>'></td>
-					<td><s:property value="activityname"/></td>
-					<td><a href=""  onclick="want(this,document.getElementById('liaisondemandID_<s:property value="liaisondemandID"/>').value)">用该活动申请</a></td>
+					<td>金额：<s:property value="mincapital"/>-<s:property value="maxcapital"/></td>
+					<td><a href=""  onclick="want(this,document.getElementById('businessdemandID_<s:property value="businessdemandID"/>').value)">用该赞助申请</a></td>
 				</tr>
 			</s:iterator>
        	 </table>
@@ -422,17 +425,24 @@ display:none;
 
 </body>
 <script type="text/javascript">
-    function showWindow() {
-        $('#showdiv').show();  //显示弹窗
-        $('#cover').css('display', 'block'); //显示遮罩层
-        $('#cover').css('height', document.body.clientHeight + 'px'); //设置遮罩层的高度为当前页面高度
-    }
+	function showWindow(i) {
+	    $('#showdiv').show();  //显示弹窗
+	    document.getElementById("liaisondemandID").value =i;     
+	    $('#cover').css('display', 'block'); //显示遮罩层
+	    $('#cover').css('height', document.body.clientHeight + 'px'); //设置遮罩层的高度为当前页面高度
+	}
 
     // 关闭弹窗
     function closeWindow() {
         $('#showdiv').hide();  //隐藏弹窗
         $('#cover').css('display', 'none');   //显示遮罩层
     }
+    function want(a,b) 
+ 	{
+	    var pms = 'businesscreateIntention.action?liaisondemandID=' + document.getElementById("liaisondemandID").value
+	    +'&businessdemandID='+b;
+		a.href=pms;
+	} 
 	$(document).ready(function(){
 		$(".flip").click(function(){
 		    $(".show").slideToggle("slow");

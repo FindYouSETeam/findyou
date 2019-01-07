@@ -16,7 +16,7 @@
   		<property  name="phone" type="string">
    			<column length="20" name="phone"/>
   		</property>
-  		<property  name="auditing" type="boolean">
+  		<property  name="auditing" type="int">
    			<column  name="auditing"/>
   		</property>
   		<many-to-one name="login" class="cn.edu.zjut.po.Login" fetch="select" unique="true" lazy="false"> 

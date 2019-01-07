@@ -1,6 +1,7 @@
 package cn.edu.zjut.action;
 
 import cn.edu.zjut.po.Passage;
+import cn.edu.zjut.service.IPassageListService;
 import cn.edu.zjut.service.PassageListService;
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.ServletActionContext;
@@ -18,9 +19,13 @@ public class PassageListAction extends ActionSupport {
     }
 
     List<Passage> passageList;
+    private IPassageListService passageListService =null;
+    public void setPassageListService(IPassageListService passageListService) {
+		this.passageListService = passageListService;
+	}
 
-    public String execute(){
-        PassageListService passageListService = new PassageListService();
+	public String execute(){
+        //PassageListService passageListService = new PassageListService();
         passageList = passageListService.query();
 /*
         passageList=new ArrayList<>();

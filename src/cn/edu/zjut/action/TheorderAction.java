@@ -12,6 +12,7 @@ import org.apache.struts2.ServletActionContext;
 import cn.edu.zjut.bean.OrderItem;
 import cn.edu.zjut.po.Business;
 import cn.edu.zjut.po.Liaisonuser;
+import cn.edu.zjut.service.ITheorderService;
 import cn.edu.zjut.service.IntentionService;
 import cn.edu.zjut.service.TheorderService;
 
@@ -23,8 +24,13 @@ public class TheorderAction {
 	private List doneList;
 	private List doingList;
 	private int orderID;
+	private ITheorderService orderService =null;
 	
-	//getter��setter
+	
+	public void setOrderService(ITheorderService orderService) {
+		this.orderService = orderService;
+	}
+	//getter和setter
 	public List getDoneList() {
 		return doneList;
 	}
@@ -43,11 +49,12 @@ public class TheorderAction {
 	public void setOrderID(int orderID) {
 		this.orderID = orderID;
 	}
-	//获取商家或外联已完成订单
+	
+	//获取完成的订单
 	public String getOrderDone()
 	{
-		TheorderService orderServ = new TheorderService();
-	 	IntentionService intenServ = new IntentionService();
+		//TheorderService orderServ = new TheorderService();
+	 	//IntentionService intenServ = new IntentionService();
 	    Business business=(Business) application.getAttribute("business");
 	    Liaisonuser liaisonuser=(Liaisonuser) application.getAttribute("liaisonuser");
 	    if(business!=null)
@@ -55,7 +62,7 @@ public class TheorderAction {
 	    	if(business.getName()!=null)
 	    	{
 	    		System.out.println("是商家");
-	    		doneList = orderServ.getOrderByStatusAndBID("完成");
+	    		doneList = orderService.getOrderByStatusAndBID("完成");
 		    	return "Businesssuccess";
 	    	}
 	    	
@@ -65,25 +72,25 @@ public class TheorderAction {
 	    	if(liaisonuser.getName()!=null)
 	    	{
 	    		System.out.println("是外联");
-	    		doneList = orderServ.getOrderByStatusAndLID("完成");
+	    		doneList = orderService.getOrderByStatusAndLID("完成");
 				return "Liaisonsuccess";
 	    	}
 	    }
         return "fail";
 	}
 	
-	//��ȡ�����еĶ����б�
+	//获取进行中的订单
 	public String getOrderDoing()
 	{
-		TheorderService orderServ = new TheorderService();
-		IntentionService intenServ = new IntentionService();
+		//TheorderService orderServ = new TheorderService();
+		//IntentionService intenServ = new IntentionService();
 	    Business business=(Business) application.getAttribute("business");
 	    Liaisonuser liaisonuser=(Liaisonuser) application.getAttribute("liaisonuser");
 	    if(business!=null)
 	    {	
 	    	if(business.getName()!=null)
 	    	{
-	    		doingList = orderServ.getOrderByStatusAndBID("进行中");
+	    		doingList = orderService.getOrderByStatusAndBID("进行中");
 				return "Businesssuccess";
 	    	}
 	    }
@@ -91,7 +98,7 @@ public class TheorderAction {
 	    {
 	    	if(liaisonuser.getName()!=null)
 	    	{
-	    		doingList = orderServ.getOrderByStatusAndLID("进行中");
+	    		doingList = orderService.getOrderByStatusAndLID("进行中");
 		    	return "Liaisonsuccess";
 	        }
 	    }
@@ -99,12 +106,12 @@ public class TheorderAction {
         return "fail";
 	}
 	
-	//������תΪ���
+	//完成订单
 	public String finishOrder()
 	{
-		TheorderService orderServ = new TheorderService();
+		//TheorderService orderServ = new TheorderService();
 		//orderServ.finishOrder(orderID);
-	    if(orderServ.finishOrder(orderID))
+	    if(orderService.finishOrder(orderID))
 	    {
 	    	getOrderDoing();
 	    	return "success";

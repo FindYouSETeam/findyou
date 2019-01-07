@@ -12,7 +12,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Transaction;
+import org.springframework.beans.factory.annotation.Autowired;
 
+import cn.edu.zjut.dao.IIntentionDAO;
+import cn.edu.zjut.dao.IOrderDAO;
 import cn.edu.zjut.dao.IntentionDAO;
 import cn.edu.zjut.dao.OrderDAO;
 import cn.edu.zjut.po.Business;
@@ -20,13 +23,19 @@ import cn.edu.zjut.po.Intention;
 import cn.edu.zjut.po.Liaisonuser;
 import cn.edu.zjut.po.Theorder;
 
-public class TheorderService {
-	HttpServletRequest request =ServletActionContext.getRequest();
-    HttpServletResponse response= ServletActionContext.getResponse();
-    ServletContext application= ServletActionContext.getServletContext();
-    HttpSession session= ServletActionContext.getRequest().getSession();
-    
-	//���ݶ���״̬���Ҷ���
+public class TheorderService implements ITheorderService{
+	//HttpServletRequest request =ServletActionContext.getRequest();
+    //HttpServletResponse response= ServletActionContext.getResponse();
+    //ServletContext application= ServletActionContext.getServletContext();
+    //HttpSession session= ServletActionContext.getRequest().getSession();
+	
+    private IOrderDAO orderDAO=null; 
+	public void setOrderDAO(IOrderDAO orderDAO) {
+		this.orderDAO = orderDAO;
+	}
+	
+
+	//根据LiaisonuserID和status获取不同状态的order
 	public List getOrderByStatusAndLID(String status)
 	{
 		Liaisonuser user = (Liaisonuser)application.getAttribute("liaisonuser");
@@ -37,13 +46,16 @@ public class TheorderService {
 					+ "from Theorder theorder,Liaisondemand liaisondemand,Liaisonuser liaisonuser " 
 					+ " where liaisonuser.liaisonuserID="+LID+" and theorder.status='" + status+ "'"
 					+ " and theorder.liaisondemand.liaisondemandID=liaisondemand.liaisondemandID and liaisondemand.liaisonuser.liaisonuserID=liaisonuser.liaisonuserID";		
-		IntentionDAO dao = new IntentionDAO();
+		//IntentionDAO dao = new IntentionDAO();
 		System.out.println(hql);
-	    List list = dao.findByHql(hql);
-	    dao.getSession().close();
+	    //List list = dao.findByHql(hql);
+	    //dao.getSession().close();
+		List list = orderDAO.findByHql(hql);
+		((OrderDAO) orderDAO).getSession().close();
 	    return list;
 	}
 	
+	//根据BusinessID和status获取不同状态的order
 	public List getOrderByStatusAndBID(String status)
 	{
 		Business user = (Business)application.getAttribute("business");
@@ -54,57 +66,46 @@ public class TheorderService {
 					+ "from Theorder theorder,Businessdemand businessdemand,Business business " 
 					+ " where business.businessID="+BID+" and theorder.status='" + status+ "'"
 					+ " and theorder.businessdemand.businessdemandID=businessdemand.businessdemandID and businessdemand.business.businessID=business.businessID";	
-		IntentionDAO dao = new IntentionDAO();
+		//IntentionDAO dao = new IntentionDAO();
 		System.out.println(hql);
-	    List list = dao.findByHql(hql);
-	    dao.getSession().close();
+	    //List list = dao.findByHql(hql);
+	    //dao.getSession().close();
+		List list = orderDAO.findByHql(hql);
+		((OrderDAO) orderDAO).getSession().close();
 	    return list;
 	}
 	
-	//����order��ȡ����
+	//根据orderID获取order
 	 public Theorder findOrderByOID(int orderID)
 	    {
-	        OrderDAO dao = new OrderDAO();
+	        //OrderDAO dao = new OrderDAO();
 	        String hql = "from Theorder where orderID="+orderID;
-	        List list = dao.findByHql(hql);
-	        dao.getSession().close();
+	        //List list = dao.findByHql(hql);
+	        //dao.getSession().close();
+	        List list = orderDAO.findByHql(hql);
+			((OrderDAO) orderDAO).getSession().close();
 	        return (Theorder) list.get(0);
 	    }
 	 
-	 //��ɶ���
+	 //完成订单
 	 public boolean finishOrder(int orderID)
 	    {
-		 	OrderDAO dao=new OrderDAO();
+		 	//OrderDAO dao=new OrderDAO();
 	        Transaction tran=null;
 			try 
 			{ 
 			     Theorder order= findOrderByOID(orderID);
-			     //�����ô���
-			     /*System.out.println("ID:"+order.getOrderID());
-			     System.out.println("ST:"+order.getStartTime());
-			     System.out.println("FT:"+order.getFinishTime());
-			     System.out.println("FT:"+order.getStatus());*/
-			    
-			      tran = dao.getSession().beginTransaction();
-			     //����״̬Ϊ���
+			     //tran = dao.getSession().beginTransaction();
+			     tran = ((OrderDAO) orderDAO).getSession().beginTransaction();
+			
 			     order.setStatus("完成");
-			     
-			     //�������ʱ��
 			     DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				 String finishTime=df.format(new Date());
 				 order.setFinishTime(finishTime);
-			     dao.update(order);
-			     
-			     //�����ô���
-			     /*System.out.println("ID:"+order.getOrderID());
-			     System.out.println("ST:"+order.getStartTime());
-			     System.out.println("FT:"+order.getFinishTime());
-			     System.out.println("FT:"+order.getStatus());
-			     System.out.println("BD:"+order.getBusinessdemand().getBusinessdemandID());
-			     System.out.println("LD:"+order.getLiaisondemand().getLiaisondemandID());*/
+				 orderDAO.update(order);
 			     
 			     tran.commit();
-			     dao.getSession().close();
+			     ((OrderDAO) orderDAO).getSession().close();
 			     return true;
 			} 
 			catch (Exception e) 
@@ -115,7 +116,7 @@ public class TheorderService {
 			} 
 			finally 
 			{
-				dao.getSession().close();
+				((OrderDAO) orderDAO).getSession().close();
 			}
 	    } 
 }

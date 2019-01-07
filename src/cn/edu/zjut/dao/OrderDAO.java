@@ -6,7 +6,7 @@ import cn.edu.zjut.po.*;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-public class OrderDAO extends BaseHibernateDAO{
+public class OrderDAO extends BaseHibernateDAO implements IOrderDAO{
 	private Log log = LogFactory.getLog(OrderDAO.class);
 	public void save(Theorder instance) {
 		log.debug("saving Order instance");

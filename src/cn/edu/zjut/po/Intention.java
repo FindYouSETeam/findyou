@@ -7,44 +7,28 @@ public class Intention {
 	private String status;
 	private Businessdemand businessdemand;
 	private Liaisondemand liaisondemand;
-	private Boolean whoApply; //申请人 0-外联 1-商家
-	public Boolean isWhoApply() {
-		return whoApply;
-	}
-	public void setWhoApply(Boolean whoApply) {
-		this.whoApply = whoApply;
-	}
+	private Boolean whoApply; 
+	
 	public Intention() {}
 	public Intention(int intentionID) {
 		super();
 		this.intentionID = intentionID;
 	}
-	public Intention(int intentionID,String applyDate,String status,Businessdemand businessdemand,Liaisondemand liaisondemand) {
+	public Intention(int intentionID, String applyDate, String status, Businessdemand businessdemand,
+			Liaisondemand liaisondemand, Boolean whoApply) {
 		super();
 		this.intentionID = intentionID;
-		this.applyDate=applyDate;
-		this.status=status;
-		this.businessdemand=businessdemand;
-		this.liaisondemand=liaisondemand;
+		this.applyDate = applyDate;
+		this.status = status;
+		this.businessdemand = businessdemand;
+		this.liaisondemand = liaisondemand;
+		this.whoApply = whoApply;
 	}
-	
 	public int getIntentionID() {
 		return intentionID;
 	}
 	public void setIntentionID(int intentionID) {
 		this.intentionID = intentionID;
-	}
-	public Businessdemand getBusinessdemand() {
-		return businessdemand;
-	}
-	public void setBusinessdemand(Businessdemand businessdemand) {
-		this.businessdemand = businessdemand;
-	}
-	public Liaisondemand getLiaisondemand() {
-		return liaisondemand;
-	}
-	public void setLiaisondemand(Liaisondemand liaisondemand) {
-		this.liaisondemand = liaisondemand;
 	}
 	public String getApplyDate() {
 		return applyDate;
@@ -58,5 +42,23 @@ public class Intention {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	public Businessdemand getBusinessdemand() {
+		return businessdemand;
+	}
+	public void setBusinessdemand(Businessdemand businessdemand) {
+		this.businessdemand = businessdemand;
+	}
+	public Liaisondemand getLiaisondemand() {
+		return liaisondemand;
+	}
+	public void setLiaisondemand(Liaisondemand liaisondemand) {
+		this.liaisondemand = liaisondemand;
+	}
+	public Boolean getWhoApply() {
+		return whoApply;
+	}
+	public void setWhoApply(Boolean whoApply) {
+		this.whoApply = whoApply;
+	}
+
 }

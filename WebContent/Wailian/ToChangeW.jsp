@@ -206,7 +206,8 @@ td
 		<li class="liL"><a class="aL" href="findbusinessrequest.action">查看反馈</a></li>
 		<li class="liL"><a class="aL" href="allIntention.action">申请记录</a></li>
 		<li class="flip"><a class="aL" href="javascript:void(0);" >历史订单</a></li>
-		<div class=show>
+		<div class=show>		
+			<li class="liL"><a class="aL"  href="seehistoryliaisondemand.action" >已发布需求</a></li>
 			<li class="liL"><a class="aL"  href="getOrderDoing.action" >进行中订单</a></li>
 			<li class="liL"><a class="aL" href="getOrderDone.action" >已完成订单</a></li>
 		</div>
