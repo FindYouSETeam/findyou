@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 
+import cn.edu.zjut.dao.IOrderDAO;
 import cn.edu.zjut.po.Theorder;
 
 public interface ITheorderService {
@@ -16,6 +17,8 @@ public interface ITheorderService {
     HttpServletResponse response= ServletActionContext.getResponse();
     ServletContext application= ServletActionContext.getServletContext();
     HttpSession session= ServletActionContext.getRequest().getSession();
+
+    public void setOrderDAO(IOrderDAO orderDAO);
 	//根据LiaisonuserID和status获取不同状态的order
 	public List getOrderByStatusAndLID(String status);
 	//根据BusinessID和status获取不同状态的order

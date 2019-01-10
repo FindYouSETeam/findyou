@@ -15,7 +15,7 @@
 		</action>
 								<!-- 商家高级注册 -->
 		<action name="businessregisterdetail" class="userAction" method="business_register_detail">
-			<result name="business_register_detailsuccess">/RegisterBusinessDetail.jsp</result>
+            <result name="business_register_detailsuccess">/registersuccess.jsp</result>
 			<result name="business_register_detailfail">/fail.jsp</result>
 		</action>
 							<!-- 外联基础注册 -->
@@ -25,7 +25,7 @@
 		</action>
 							<!-- 外联高级注册 -->
 		<action name="userregisterdetail" class="userAction" method="user_register_detail">
-			<result name="user_register_detailsuccess">/RegisterUserDetail.jsp</result>
+            <result name="user_register_detailsuccess">/registersuccess.jsp</result>
 			<result name="user_register_detailfail">/fail.jsp</result>
 		</action>
 								<!-- 登录模块 -->
@@ -171,22 +171,22 @@
 		</action>
 			<!-- 把进行中订单确认完成 -->
 		<action name="finishOrder" class="theorderAction" method="finishOrder">
-			<result name="success">/orderDoing.jsp</result>
+            <result name="success">/Shanjia/ToSeeOrderDoingS.jsp</result>
 		</action>
 		<!-- 跳转到评价商家页面 -->
 		<action name="GoCreateShopAssess" class="userAction" method="GoCreateShopAssess">
 			<result name="createsuccess">/Wailian/assessForBusiness.jsp</result>
-			<result name="createfail">/fail.jsp</result>
+            <result name="createfail">/Wailian/assessfail.jsp</result>
 		</action>
 			<!-- 评价商家 -->
 		<action name="CreateShopAssess" class="userAction" method="CreateShopAssess">
-			<result name="createsuccess">/Wailian/OperateSuceess.jsp</result>
+            <result name="createsuccess">/Wailian/OperateSuccess.jsp</result>
 			<result name="createfail">/fail.jsp</result>
 		</action>
 			<!--跳到评价外联页面 -->
 		<action name="GoCreateLiaisonAssess" class="userAction" method="GoCreateLiaisonAssess">
 			<result name="createsuccess">/Shanjia/assessForLiaison.jsp</result>
-			<result name="createfail">/fail.jsp</result>
+            <result name="createfail">/Shanjia/assessfail.jsp</result>
 		</action>
 			<!-- 评价外联 -->
 		<action name="CreateLiaisonAssess" class="userAction" method="CreateLiaisonAssess">

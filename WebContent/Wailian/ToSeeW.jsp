@@ -206,7 +206,7 @@ a
 }
 </style>
 </head>
-<s:action name="DemandAction" namespace="" executeResult="false"/>
+<s:action name="rejectBusinessrequestOrnot" namespace="" executeResult="false"/>
 <div class="Main-Topic" ><!-- 导航栏 -->
 	<div class="Main-Topic-Left" >
 		<span style="font-size:40px;">找到你</span> <span style="font-size:10px;">外联版</span>

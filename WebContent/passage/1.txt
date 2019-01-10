@@ -3,5 +3,5 @@ fhaoifajsdifaoifhsaipdfasdjhfposd
 fahofisajdofiadoifhjaosidfjasoidfj
 hsdaiofjsoaidfhoaihfdoisdahfoi
 <h3>66666</h3>
-<image src="1.jpg" />
+<image src="image/test.png" />
 jasjofhasoidfhasoifhoasdhfoiasdf

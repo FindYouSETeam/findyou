@@ -15,6 +15,7 @@ import org.apache.struts2.ServletActionContext;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 public class IntentionService implements IIntentionService
 {
@@ -44,7 +45,7 @@ public class IntentionService implements IIntentionService
         //List list = dao.findByHql(hql);
         //dao.getSession().close();
         List list = intentionDAO.findByHql(hql);
-        ((IntentionDAO) intentionDAO).getSession().close();
+        //((IntentionDAO) intentionDAO).getSession().close();
         return list;
     }
     
@@ -66,7 +67,7 @@ public class IntentionService implements IIntentionService
         System.out.println(hql);
         //List list = dao.findByHql(hql);
         List list = intentionDAO.findByHql(hql);
-        ((IntentionDAO) intentionDAO).getSession().close();
+        //((IntentionDAO) intentionDAO).getSession().close();
         return list;
     }
     
@@ -77,7 +78,7 @@ public class IntentionService implements IIntentionService
         String hql = "from Intention where intentionID="+intentionID;
         //List list = dao.findByHql(hql);
         List list = intentionDAO.findByHql(hql);
-        ((IntentionDAO) intentionDAO).getSession().close();
+        //((IntentionDAO) intentionDAO).getSession().close();
         return (Intention)list.get(0);
     }
     
@@ -85,7 +86,7 @@ public class IntentionService implements IIntentionService
     public boolean cancelIntention(int intentionID)
     {
     	//IntentionDAO dao=new IntentionDAO();
-        Transaction tran=null;
+        ///Transaction tran=null;
 		try 
 		{ 
 		    
@@ -94,25 +95,25 @@ public class IntentionService implements IIntentionService
 		     //System.out.println("service2"); 
 		     
 		     //tran = dao.getSession().beginTransaction();
-		     tran = ((IntentionDAO) intentionDAO).getSession().beginTransaction();
+            ///tran = ((IntentionDAO) intentionDAO).getSession().beginTransaction();
 		     
 		     intention.setStatus("已取消");
 		     intentionDAO.update(intention);
 		     //System.out.println("service3");
-		     tran.commit();
-		     ((IntentionDAO) intentionDAO).getSession().close();
+            ///tran.commit();
+            //((IntentionDAO) intentionDAO).getSession().close();
 		     return true;
 		} 
 		catch (Exception e) 
-		{ 
-			if(tran!= null) 
-				tran.rollback(); 
+		{
+            ///if(tran!= null)
+            ///tran.rollback();
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-			((IntentionDAO) intentionDAO).getSession().close();
+            //((IntentionDAO) intentionDAO).getSession().close();
 		}
     } 
 }

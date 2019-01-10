@@ -25,6 +25,8 @@ public interface IDemandService {
 	public boolean saveliaDemandService(Liaisondemand liaisondemand);  //创建外联需求
 	public boolean savebusinessDemandService(Businessdemand businessdemand);  //创建商家需求
 	public boolean createIntention(Businessdemand businessdemand,Liaisondemand liaisondemand);//外联对商家 有意向
+
+    public boolean BusinesscreateIntention(Businessdemand businessdemand, Liaisondemand liaisondemand);//商家对外联 有意向
 	public List findliaisondemand();   //显示外联已有的需求
 	public List findall();  //点击首页显示所有商家意向
 	public List findbusinessrequest();  //显示商家对外联的请求
@@ -34,4 +36,10 @@ public interface IDemandService {
 	public LiaisonDetail findliaisonbyID(int liaisonuserID);//用外联ID查找外联信息
 	public Intention findIntentionbyID(int intentionID); //用intentionID查找对应intention
 	public boolean rejectBusinessOrnot(int reject,int intentionID);  //拒绝或是接受请求
+
+    public List findoverbusiness(int businessdemandID);//查找多余的商家需求申请
+
+    public List findoverliaison(int liaisondemandID);//查找多余的外联需求申请
+
+    public void updateIntention(List list);//修改多余的需求申请
 }

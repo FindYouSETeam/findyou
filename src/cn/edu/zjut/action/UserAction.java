@@ -285,7 +285,8 @@ public class UserAction{
 		demandlist=userService.findliaisonService();  
 		return "success";
 	}
-	public String CreateShopAssess(int orderID) //评价商店
+
+    public String CreateShopAssess() //评价商店
 	{
 		Theorder t=new Theorder();
 		t.setOrderID(orderID);
@@ -321,20 +322,27 @@ public class UserAction{
 		System.out.println(orderID);
 		application.setAttribute("orderID", orderID);
 		System.out.println("获取到");
-			return "createsuccess";
-	}
+        if (userService.alreadyassesliaison(orderID) == false)
+            return "createsuccess";
+        else return "createfail";
+    }
+	
 	public String GoCreateShopAssess()//跳转评价商家
 	{		
 		System.out.println("进入action");
 		System.out.println(orderID);
 		application.setAttribute("orderID", orderID);
 		System.out.println("获取到");
-			return "createsuccess";
+        if (userService.alreadyassesshop(orderID) == false)
+            return "createsuccess";
+        else
+            return "createfail";
 	}
 	
 	public String judgeliaison()  //跳转审核外联页
 	{
 		//AdminService adminServ =new AdminService();
+        System.out.println("0liaison");
 		judgeliaisonlist=adminService.liaisonJudge();
 		application.setAttribute("judgeliaisonlist", judgeliaisonlist);
 		return "success";
@@ -349,6 +357,7 @@ public class UserAction{
 	public String passliaison()
 	{
 		//AdminService adminServ =new AdminService();
+        System.out.println("pass");
 		if(pass.equals("1"))
 		{
 			if(adminService.passliaison(Integer.parseInt(liaisonuserID))==true)

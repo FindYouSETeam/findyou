@@ -5,6 +5,8 @@ import cn.edu.zjut.dao.PassageDAO;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 public class PassageListService implements IPassageListService{
 	private IPassageDAO passageDAO=null;
 	

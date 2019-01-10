@@ -262,8 +262,8 @@ a,a:hover
 <div class="Main-Center"><!-- 左导航栏 -->
 	<ul class="ulL">
 		<li class="liL"><a class="aL" href="VisiterToSeeActive.action">查看商家营销计划</a></li>
-		<li class="liL"><a class="aL" href="VisiterToSeeBusiness.action">查看商家需求</a></li>
-		<li class="liL"><a class="aL" href="VisiterToSeeLiaison.action">查看外联需求</a></li>
+        <li class="liL"><a class="aL" href="VisiterToSeeBusiness.action">查看外联需求</a></li>
+        <li class="liL"><a class="aL" href="VisiterToSeeLiaison.action">查看商家需求</a></li>
 	</ul>
 	<div class="Main-Content">
 		<div class="Card-Head"> <!-- 卡片头 -->

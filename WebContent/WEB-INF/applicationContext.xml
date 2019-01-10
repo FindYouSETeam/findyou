@@ -1,24 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" 
-	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-	   xmlns:context="http://www.springframework.org/schema/context" 
-	   xmlns:aop="http://www.springframework.org/schema/aop" 
-	   xmlns:tx="http://www.springframework.org/schema/tx" 
-	   xsi:schemaLocation="http://www.springframework.org/schema/beans 
-						   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
-						   http://www.springframework.org/schema/aop 
-						   http://www.springframework.org/schema/aop/spring-aop-4.0.xsd 
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   					   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd 
+	   					   http://www.springframework.org/schema/aop
+						   http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
 						   http://www.springframework.org/schema/tx 
-						   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd 
-						   http://www.springframework.org/schema/context 
-						   http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+						   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd ">
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
 		<property name="url" value="jdbc:sqlserver://localhost:1433;DatabaseName=RelationDBMS"/>
 		<property name="username" value="sa"/>
 		<property name="password" value="DLG19971114/"/> 
 	</bean>
-	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+    <!-- 配置事务管理器 -->
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory">
+            <ref bean="sessionFactory"/>
+        </property>
+    </bean>
+
+    <!-- 定义增强处理拦截方法 -->
+    <!--  <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        <tx:attributes>
+            <tx:method name="add*" propagation="REQUIRED" />
+            <tx:method name="update*" propagation="REQUIRED" />
+            <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="del*" propagation="REQUIRED" />
+            <tx:method name="*" read-only="true" />
+        </tx:attributes>
+    </tx:advice>-->
+
+    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+
+
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
 			<props>
@@ -42,9 +62,22 @@
 				<value>cn/edu/zjut/po/Passage.hbm.xml</value>
 			</list>
 		</property>
-	</bean>	
-	
-	<!--DAO对象-->
+	</bean>
+
+    <!-- 启动使用注解配置AOP支持 -->
+    <!-- <aop:aspectj-autoproxy />
+    <bean id="securityHandler" class="cn.edu.zjut.aspect.SecurityHandler" /> -->
+    <bean id="securityHandler2" class="cn.edu.zjut.aspect.SecurityHandler2"/>
+    <!-- 配置文件的方式 -->
+    <aop:config>
+        <aop:aspect id="security" ref="securityHandler2">
+            <aop:pointcut id="modify" expression="execution(* cn.edu.zjut.action.*.login(..))"/>
+
+            <aop:before method="checkSecurity" pointcut-ref="modify"/>
+        </aop:aspect>
+    </aop:config>
+
+    <!--DAO对象-->
 	<bean id="baseDAO" class="cn.edu.zjut.dao.BaseHibernateDAO">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
@@ -128,8 +161,8 @@
 		<property name="userService" ref="userService" />
 		<property name="demandService" ref="demandService" />
 		<property name="adminService" ref="adminService" />
-	</bean>	
-	<bean id="visterAction" class="cn.edu.zjut.action.VisterAction" scope="prototype">
+	</bean>
+    <bean id="visiterAction" class="cn.edu.zjut.action.VisiterAction" scope="prototype">
 		<property name="userService" ref="userService" />
 		<property name="activeService" ref="activeService" />
 	</bean>	

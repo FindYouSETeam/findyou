@@ -221,9 +221,10 @@ td
 		</div>
 		<div class="Card-Body" >
 			<div class="Center-Form" >
-				<s:form class="Center-Form" action ="updateBusinessInfo" method="post">
+                <s:form class="Center-Form" action="updateBusinessInfo" method="post" onsubmit="return sb1();">
 					<table>
 						<tr><s:hidden name="business.businessID" value="%{#application.business.businessID}"/></tr>
+                        <tr><s:hidden name="business.auditing" value="%{#application.business.auditing}"/></tr>
 					</table>
 					<table class="Center-Form">
 						<tr>
@@ -232,19 +233,23 @@ td
 						</tr>
 						<tr>
 							<td>请输入密码</td>
-							<td><s:password name="login.password" label="请输入密码"/></td>
+                            <td><s:password name="login.password" value="%{#application.business.login.password}"
+                                            id="password" label="请输入密码"/></td>
 						</tr>
 						<tr>
 							<td>请输入姓名</td>
-							<td><s:textfield name="business.name" label="请输入姓名"/></td>
+                            <td><s:textfield name="business.name" value="%{#application.business.name}" id="name"
+                                             label="请输入姓名"/></td>
 						</tr>
 						<tr>
 							<td>请输入身份证号码</td>
-							<td><s:textfield name="business.IDCard" label="请输入身份证号码"/></td>
+                            <td><s:textfield name="business.IDCard" value="%{#application.business.IDCard}" id="IDCard"
+                                             label="请输入身份证号码"/></td>
 						</tr>
 						<tr>
 							<td>请输入电话号码</td>
-							<td><s:textfield name="business.phone" label="请输入电话号码"/></td>
+                            <td><s:textfield name="business.phone" value="%{#application.business.phone}" id="phone"
+                                             label="请输入电话号码"/></td>
 						</tr>					
 						<tr>
 							<td></td>
@@ -271,5 +276,48 @@ $(document).ready(function(){
 	    $(".show").slideToggle("slow");
 	  });
 	});
+
+function sb1() {
+    var password = document.getElementById("password");
+    var name = document.getElementById("name");
+    var IDCard = document.getElementById("IDCard");
+    var phone = document.getElementById("phone");
+
+    if (trim(password.value) == null || trim(password.value) == "") {
+        alert("请输入密码");
+        password.focus();
+        return false;
+    }
+    if (trim(name.value) == null || trim(name.value) == "") {
+        alert("请输入姓名");
+        name.focus();
+        return false;
+    }
+    if (trim(IDCard.value) == null || trim(IDCard.value) == "") {
+        alert("请输入身份证");
+        IDCard.focus();
+        return false;
+    }
+    if (trim(phone.value) == null || trim(phone.value) == "") {
+        alert("请输入电话");
+        phone.focus();
+        return false;
+    }
+    if (trim(phone.value) != null || trim(phone.value) != "") {
+        var isok = isNaN(trim(phone.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+
+        if (isok) {
+            phone.value = "";
+            alert("请输入数字！");
+            return false;
+        }
+
+    }
+    return true;
+}
+
+function trim(str) { //删除左右两端的空格
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
 </script>
 </html>

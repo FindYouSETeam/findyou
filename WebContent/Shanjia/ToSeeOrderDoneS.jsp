@@ -330,7 +330,7 @@ display:none;
 				<td><s:property value="orderID"/></td>
 				<td><s:property value="startTime"/></td>
 				<td><s:property value="finishTime"/></td>
-				<td><s:property value="businessdemand.businessdemandID"/>,<s:property value="liaisondemand.liaisondemandID"/></td>
+                <td><s:property value="businessdemandID"/>,<s:property value="liaisondemandID"/></td>
 				<td><a href="GoCreateLiaisonAssess.action?orderID=<s:property value="orderID"/>">评价</a></td>
 			</tr>
 			</s:iterator>

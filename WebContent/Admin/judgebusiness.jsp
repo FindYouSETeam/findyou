@@ -275,7 +275,7 @@ display:none;
 <div class="Main-Center"><!-- 左导航栏 -->
 	<ul class="ulL">
 		<li class="liL"><a class="aL" href="judgeliaison.action">审核外联</a></li>
-		<li class="liL"><a class="aL" href="judgebusiness.action">审核管理员</a></li>
+        <li class="liL"><a class="aL" href="judgebusiness.action">审核商家</a></li>
 	</ul>
 	<div class="Main-Content">
 		<div class="Card-Head"> <!-- 卡片头 -->

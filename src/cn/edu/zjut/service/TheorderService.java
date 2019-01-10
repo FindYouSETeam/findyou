@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.struts2.ServletActionContext;
 import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.edu.zjut.dao.IIntentionDAO;
 import cn.edu.zjut.dao.IOrderDAO;
@@ -50,8 +51,10 @@ public class TheorderService implements ITheorderService{
 		System.out.println(hql);
 	    //List list = dao.findByHql(hql);
 	    //dao.getSession().close();
-		List list = orderDAO.findByHql(hql);
-		((OrderDAO) orderDAO).getSession().close();
+
+        List list = orderDAO.findByHql(hql);
+
+        //((OrderDAO) orderDAO).getSession().close();
 	    return list;
 	}
 	
@@ -70,8 +73,10 @@ public class TheorderService implements ITheorderService{
 		System.out.println(hql);
 	    //List list = dao.findByHql(hql);
 	    //dao.getSession().close();
-		List list = orderDAO.findByHql(hql);
-		((OrderDAO) orderDAO).getSession().close();
+
+        List list = orderDAO.findByHql(hql);
+
+        //((OrderDAO) orderDAO).getSession().close();
 	    return list;
 	}
 	
@@ -82,8 +87,10 @@ public class TheorderService implements ITheorderService{
 	        String hql = "from Theorder where orderID="+orderID;
 	        //List list = dao.findByHql(hql);
 	        //dao.getSession().close();
-	        List list = orderDAO.findByHql(hql);
-			((OrderDAO) orderDAO).getSession().close();
+
+            List list = orderDAO.findByHql(hql);
+
+            //((OrderDAO) orderDAO).getSession().close();
 	        return (Theorder) list.get(0);
 	    }
 	 
@@ -91,32 +98,43 @@ public class TheorderService implements ITheorderService{
 	 public boolean finishOrder(int orderID)
 	    {
 		 	//OrderDAO dao=new OrderDAO();
-	        Transaction tran=null;
+            ///Transaction tran=null;
 			try 
 			{ 
 			     Theorder order= findOrderByOID(orderID);
 			     //tran = dao.getSession().beginTransaction();
-			     tran = ((OrderDAO) orderDAO).getSession().beginTransaction();
-			
+                /// tran = ((OrderDAO) orderDAO).getSession().beginTransaction();
+                System.out.println(order.getOrderID());
+                System.out.println(order.getStartTime());
+                // order.setOrderID(4);
 			     order.setStatus("完成");
 			     DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 				 String finishTime=df.format(new Date());
 				 order.setFinishTime(finishTime);
+                System.out.println("set");
+                System.out.println(order.getFinishTime());
+                System.out.println(order.getStatus());
 				 orderDAO.update(order);
-			     
-			     tran.commit();
-			     ((OrderDAO) orderDAO).getSession().close();
+                System.out.println("update");
+
+                ///tran.commit();
+
+                System.out.println("commit");
+                // ((OrderDAO) orderDAO).getSession().close();
+                System.out.println("close");
+                //((OrderDAO) orderDAO).getSession().flush();
 			     return true;
 			} 
 			catch (Exception e) 
-			{ 
-				if(tran != null) 
-					tran.rollback(); 
+			{
+                ///if(tran != null)
+                ///tran.rollback();
 				return false;
 			} 
 			finally 
 			{
-				((OrderDAO) orderDAO).getSession().close();
+                //((OrderDAO) orderDAO).getSession().close();
+                System.out.println("close");
 			}
 	    } 
 }

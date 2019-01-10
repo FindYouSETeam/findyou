@@ -288,7 +288,7 @@ display:none;
 	</ul>
 	<div class="Main-Content">
 		<div class="Card-Head"> <!-- 卡片头 -->
-			<h3 class="Card-Head-Title" style="text-align: center">评价商家</h3>
+            <h3 class="Card-Head-Title" style="text-align: center" onsubmit="return sb1();">评价商家</h3>
 		</div>
 		<div class="Card-Body" >
 		<form action="CreateShopAssess" method="post">
@@ -300,9 +300,9 @@ display:none;
 				<th>效果（5分）</th>
 			</tr>
 			<tr>
-				<td><s:textfield name="shopassess.assess"/></td>
-				<td><s:textfield name="shopassess.attitude"/></td>
-				<td><s:textfield name="shopassess.effect"/></td>
+                <td><s:textfield name="shopassess.assess" id="assess"/></td>
+                <td><s:textfield name="shopassess.attitude" id="attitude"/></td>
+                <td><s:textfield name="shopassess.effect" id="effect"/></td>
 			</tr>
 				<tr>
 					<td></td>
@@ -380,5 +380,54 @@ display:none;
 		    $(".show").slideToggle("slow");
 		  });
 		});
+
+    function sb1() {
+
+        var assess = document.getElementById("assess");
+        var attitude = document.getElementById("attitude");
+        var effect = document.getElementById("effect");
+
+
+        if (trim(assess.value) == null || trim(assess.value) == "") {
+            alert("请输入评价");
+            assess.focus();
+            return false;
+        }
+
+        if (trim(attitude.value) == null || trim(attitude.value) == "") {
+            alert("请输入态度评分");
+            attitude.focus();
+            return false;
+        }
+        if (trim(attitude.value) != null || trim(attitude.value) != "") {
+            var isok = isNaN(trim(attitude.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+            if (isok) {
+                attitude.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+        if (trim(effect.value) == null || trim(effect.value) == "") {
+            alert("请输入所需最小金额");
+            effect.focus();
+            return false;
+        }
+        if (trim(effect.value) != null || trim(effect.value) != "") {
+            var isok = isNaN(trim(effect.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+            if (isok) {
+                effect.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
 </script>
 </html>

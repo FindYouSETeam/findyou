@@ -221,23 +221,23 @@ td
 		</div>
 		<div class="Card-Body" >
 			<div class="Center-Form" >
-				<s:form class="Center-Form" action ="createBusinessDemand" method="post">
+                <s:form class="Center-Form" action="createBusinessDemand" method="post" onsubmit="return sb1();">
 					<table class="Center-Form">
 					<tr>
 						<td>需求周期</td>
-						<td><s:textfield  name="businessdemand.period" label="需求周期"/></td>
+                        <td><s:textfield name="businessdemand.period" id="period" label="需求周期"/></td>
 					</tr>
 					<tr>
 						<td>活动覆盖人数</td>
-						<td><s:textfield  name="businessdemand.overallnum" label="活动覆盖人数"/></td>
+                        <td><s:textfield name="businessdemand.overallnum" id="overallnum" label="活动覆盖人数"/></td>
 					</tr>
 					<tr>
 						<td>活动预期最小金额</td>
-						<td><s:textfield  name="businessdemand.mincapital" label="活动预期最小金额"/></td>
+                        <td><s:textfield name="businessdemand.mincapital" id="mincapital" label="活动预期最小金额"/></td>
 					</tr>
 					<tr>
 						<td>活动预期最大金额</td>
-						<td><s:textfield  name="businessdemand.maxcapital" label="活动预期最大金额"/></td>
+                        <td><s:textfield name="businessdemand.maxcapital" id="maxcapital" label="活动预期最大金额"/></td>
 					</tr>
 					<tr>
 						<td></td>
@@ -259,10 +259,95 @@ td
 
 </body>
 <script type="text/javascript">
-$(document).ready(function(){
-	$(".flip").click(function(){
-	    $(".show").slideToggle("slow");
-	  });
-	});
+    $(document).ready(function () {
+        $(".flip").click(function () {
+            $(".show").slideToggle("slow");
+        });
+    });
+
+    function sb1() {
+
+        var period = document.getElementById("period");
+        var overallnum = document.getElementById("overallnum");
+        var mincapital = document.getElementById("mincapital");
+        var maxcapital = document.getElementById("maxcapital");
+
+        if (trim(period.value) == null || trim(period.value) == "") {
+            alert("请输入有效天数");
+            period.focus();
+            return false;
+        }
+        if (trim(period.value) != null || trim(period.value) != "") {
+            var isok = isNaN(trim(period.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+
+            if (isok) {
+                period.value = "";
+                alert("请输入数字！");
+                return false;
+            }
+
+        }
+        if (trim(overallnum.value) == null || trim(overallnum.value) == "") {
+            alert("请输入覆盖人数");
+            overallnum.focus();
+            return false;
+        }
+        if (trim(overallnum.value) != null || trim(overallnum.value) != "") {
+            var isok = isNaN(trim(overallnum.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+            if (isok) {
+                overallnum.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+        if (trim(mincapital.value) == null || trim(mincapital.value) == "") {
+            alert("请输入所需最小金额");
+            mincapital.focus();
+            return false;
+        }
+        if (trim(mincapital.value) != null || trim(mincapital.value) != "") {
+            var isok = isNaN(trim(mincapital.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+            if (isok) {
+                mincapital.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+        if (trim(maxcapital.value) == null || trim(maxcapital.value) == "") {
+            alert("请输入所需最大金额");
+            maxcapital.focus();
+            return false;
+        }
+        if (trim(maxcapital.value) != null || trim(maxcapital.value) != "") {
+            var isok = isNaN(trim(maxcapital.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+
+            if (isok) {
+                maxcapital.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+
+        if ((trim(mincapital.value) != null || trim(mincapital.value) != "") && (trim(maxcapital.value) != null || trim(maxcapital.value) != "")) {
+            alert("1");
+            alert(parseInt(mincapital.value));
+            alert(parseInt(mincapital.value) > parseInt(maxcapital.value));
+            if (parseInt(mincapital.value) > parseInt(maxcapital.value)) {
+                alert("最小金额应小于最大金额");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        return true;
+    }
+
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
 </script>
 </html>

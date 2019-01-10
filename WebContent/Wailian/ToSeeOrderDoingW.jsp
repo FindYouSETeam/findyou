@@ -327,7 +327,7 @@ display:none;
 			<tr>
 				<td><s:property value="orderID"/></td>
 				<td><s:property value="startTime"/></td>
-				<td><s:property value="businessdemand.businessdemandID"/>,<s:property value="liaisondemand.liaisondemandID"/></td>
+                <td><s:property value="businessdemandID"/>,<s:property value="liaisondemandID"/></td>
 				<td><a href="finishOrder.action?orderID=<s:property value="orderID"/>">完成</a></td>
 			</tr>
 			</s:iterator>

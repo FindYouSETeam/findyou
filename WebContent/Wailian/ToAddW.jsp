@@ -222,35 +222,35 @@ display:none;
 		</div>
 		<div class="Card-Body" >
 			<div class="Center-Form" >
-				<s:form class="Center-Form" action ="createliademand" method="post">
+                <s:form class="Center-Form" action="createliademand" method="post" onsubmit="return sb1();">
 					<table class="Center-Form">
 					<tr>
 						<td>活动名称</td>
-						<td><s:textfield  name="liaisondemand.activityname" label="活动名称"/></td>
+                        <td><s:textfield name="liaisondemand.activityname" id="activityname" label="活动名称"/></td>
 					</tr>
 					<tr>
 						<td>活动时间</td>
-						<td><s:textfield  name="liaisondemand.period" label="活动时间"/></td>
+                        <td><s:textfield name="liaisondemand.period" id="period" label="活动时间"/></td>
 					</tr>
 					<tr>
 						<td>活动最小预期金额</td>
-						<td><s:textfield name="liaisondemand.mincapital" label="最小预期金额"/></td>
+                        <td><s:textfield name="liaisondemand.mincapital" id="mincapital" label="最小预期金额"/></td>
 					</tr>
 					<tr>
 						<td>活动最大预期金额</td>
-						<td><s:textfield name="liaisondemand.maxcapital" label="最小预期金额"/></td>
+                        <td><s:textfield name="liaisondemand.maxcapital" id="maxcapital" label="最大预期金额"/></td>
 					</tr>
 					<tr>
 						<td>活动覆盖人数</td>
-						<td><s:textfield name="liaisondemand.overallnum" label="活动覆盖人数"/></td>
+                        <td><s:textfield name="liaisondemand.overallnum" id="overallnum" label="活动覆盖人数"/></td>
 					</tr>
 					<tr>
 						<td>活动细节</td>
-						<td><s:textfield name="liaisondemand.activitydetail" label="活动细节"/></td>
+                        <td><s:textfield name="liaisondemand.activitydetail" id="activitydetail" label="活动细节"/></td>
 					</tr>
 					<tr>
 						<td>宣传方式</td>
-						<td><s:textfield name="liaisondemand.conductdetail" label="宣传方式"/></td>
+                        <td><s:textfield name="liaisondemand.conductdetail" id="conductdetail" label="宣传方式"/></td>
 					</tr>
 					<tr>
 						<td>活动类型</td>
@@ -282,5 +282,105 @@ display:none;
 		    $(".show").slideToggle("slow");
 		  });
 		});
+
+    function sb1() {
+
+        var activityname = document.getElementById("activityname");
+        var period = document.getElementById("period");
+        var mincapital = document.getElementById("mincapital");
+        var maxcapital = document.getElementById("maxcapital");
+        var overallnum = document.getElementById("overallnum");
+        var activitydetail = document.getElementById("activitydetail");
+        var conductdetail = document.getElementById("conductdetail");
+
+        if (trim(activityname.value) == null || trim(activityname.value) == "") {
+            alert("请输入活动名");
+            activityname.focus();
+            return false;
+        }
+        if (trim(period.value) == null || trim(period.value) == "") {
+            alert("请输入有效天数");
+            period.focus();
+            return false;
+        }
+        if (trim(period.value) != null || trim(period.value) != "") {
+            var isok = isNaN(trim(period.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+
+            if (isok) {
+                period.value = "";
+                alert("请输入数字！");
+                return false;
+            }
+
+        }
+        if (trim(overallnum.value) == null || trim(overallnum.value) == "") {
+            alert("请输入覆盖人数");
+            overallnum.focus();
+            return false;
+        }
+        if (trim(overallnum.value) != null || trim(overallnum.value) != "") {
+            var isok = isNaN(trim(overallnum.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+            if (isok) {
+                overallnum.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+        if (trim(mincapital.value) == null || trim(mincapital.value) == "") {
+            alert("请输入所需最小金额");
+            mincapital.focus();
+            return false;
+        }
+        if (trim(mincapital.value) != null || trim(mincapital.value) != "") {
+            var isok = isNaN(trim(mincapital.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+            if (isok) {
+                mincapital.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+        if (trim(maxcapital.value) == null || trim(maxcapital.value) == "") {
+            alert("请输入所需最大金额");
+            maxcapital.focus();
+            return false;
+        }
+        if (trim(maxcapital.value) != null || trim(maxcapital.value) != "") {
+            var isok = isNaN(trim(maxcapital.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+
+            if (isok) {
+                maxcapital.value = "";
+                alert("请输入数字!");
+                return false;
+            }
+
+        }
+
+        if ((trim(mincapital.value) != null || trim(mincapital.value) != "") && (trim(maxcapital.value) != null || trim(maxcapital.value) != "")) {
+            if (parseInt(mincapital.value) > parseInt(maxcapital.value)) {
+                alert("最小金额应小于最大金额");
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+        if (trim(activitydetail.value) == null || trim(activitydetail.value) == "") {
+            alert("请输入活动细节");
+            activitydetail.focus();
+            return false;
+        }
+        if (trim(conductdetail.value) == null || trim(conductdetail.value) == "") {
+            alert("请输入宣传细节");
+            conductdetail.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
 </script>
 </html>

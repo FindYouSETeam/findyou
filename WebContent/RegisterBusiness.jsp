@@ -4,6 +4,8 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <html>
 <head>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="scrollreveal.min.js"></script>
     <s:head theme="xhtml"/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>找到你平台</title>
@@ -165,13 +167,13 @@
 </head>
 <div class="Main-Topic"><!-- 导航栏 -->
     <div class="Main-Topic-Left">
-        <span style="font-size:40px;">找到你</span> <span style="font-size:10px;">外联版</span>
+        <span style="font-size:40px;">找到你</span>
     </div>
     <div class="Main-Topic-LeftUp">
-        <span style="font-size:15px;">用户名</span>
+
     </div>
     <div class="Main-Topic-Right">
-        <span class="Top-span"><a href="loginSsW.jsp" style="color: #fff;">首页</a> </span><span class="Top-span">&nbsp;|&nbsp;退出</span>
+        <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span>
     </div>
 </div>
 <div class="Main-Center"><!-- 左导航栏 -->
@@ -185,27 +187,27 @@
         </div>
         <div class="Card-Body">
             <div class="Center-Form">
-                <s:form class="Center-Form" action="businessregisterbasic" method="post">
+                <s:form class="Center-Form" action="businessregisterbasic" method="post" onsubmit="return sb1();">
 			        <table class="Center-Form">
                         <tr>
                             <td>用户名</td>
-                            <td><s:textfield name="login.account" label="请输入用户名"/></td>
+                            <td><s:textfield name="login.account" id="account" label="请输入用户名"/></td>
                         </tr>
                         <tr>
                             <td>密码</td>
-                            <td><s:password name="login.password" label="请输入密码"/></td>
+                            <td><s:password name="login.password" id="password" label="请输入密码"/></td>
                         </tr>
                         <tr>
                             <td>姓名</td>
-                            <td><s:textfield name="business.name" label="请输入姓名"/></td>
+                            <td><s:textfield name="business.name" id="name" label="请输入姓名"/></td>
                         </tr>
                         <tr>
                             <td>身份证号码</td>
-                            <td><s:textfield name="business.IDCard" label="请输入身份证号码"/></td>
+                            <td><s:textfield name="business.IDCard" id="IDCard" label="请输入身份证号码"/></td>
                         </tr>
                         <tr>
                             <td>电话号码</td>
-                            <td><s:textfield name="business.phone" label="请输入电话号码"/></td>
+                            <td><s:textfield name="business.phone" id="phone" label="请输入电话号码"/></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -226,4 +228,89 @@
 </div>
 
 </body>
+<script type="text/javascript">
+    function chkvalue(txt) {
+        if (txt.id == "account")
+            if (txt.value == "") {
+                alert("输入用户名不得为空");
+                return false;
+            }
+        if (txt.id == "password")
+            if (txt.value == "") {
+                alert("输入密码不得为空");
+                return false;
+            }
+            else {
+                var isok = isNaN(txt.value);//判断是否为数值类型 bool,false为数字类型，true为字符
+                if (isok == true) {
+                    txt.value = "";
+                    alert("请输入整数类型！");
+                }
+            }
+    }
+
+    function chknul(txt) {
+        if (txt.id == "account")
+            if (txt.value == "") {
+                txt.value = " ";
+                alert("输入用户名不得为空");
+                return false;
+            }
+        if (txt.id == "password")
+            if (txt.value == "") {
+                txt.value = " ";
+                alert("输入密码不得为空");
+                return false;
+            }
+
+    }
+
+    function sb1() {
+        var username = document.getElementById("account");
+        var password = document.getElementById("password");
+        var name = document.getElementById("name");
+        var IDCard = document.getElementById("IDCard");
+        var phone = document.getElementById("phone");
+        if (trim(username.value) == null || trim(username.value) == "") {
+            alert("请输入用户名");
+            username.focus();
+            return false;
+        }
+        if (trim(password.value) == null || trim(password.value) == "") {
+            alert("请输入密码");
+            password.focus();
+            return false;
+        }
+        if (trim(name.value) == null || trim(name.value) == "") {
+            alert("请输入姓名");
+            name.focus();
+            return false;
+        }
+        if (trim(IDCard.value) == null || trim(IDCard.value) == "") {
+            alert("请输入身份证");
+            IDCard.focus();
+            return false;
+        }
+        if (trim(phone.value) == null || trim(phone.value) == "") {
+            alert("请输入电话");
+            phone.focus();
+            return false;
+        }
+        if (trim(phone.value) != null || trim(phone.value) != "") {
+            var isok = isNaN(trim(phone.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+
+            if (isok) {
+                phone.value = "";
+                alert("请输入数字！");
+                return false;
+            }
+
+        }
+        return true;
+    }
+
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+</script>
 </html>

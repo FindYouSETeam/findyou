@@ -5,6 +5,8 @@
 <html>
 <head>
     <s:head theme="xhtml"/>
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="scrollreveal.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>找到你平台</title>
     <style>
@@ -165,13 +167,13 @@
 </head>
 <div class="Main-Topic"><!-- 导航栏 -->
     <div class="Main-Topic-Left">
-        <span style="font-size:40px;">找到你</span> <span style="font-size:10px;">外联版</span>
+        <span style="font-size:40px;">找到你</span>
     </div>
     <div class="Main-Topic-LeftUp">
-        <span style="font-size:15px;">用户名</span>
+
     </div>
     <div class="Main-Topic-Right">
-        <span class="Top-span"><a href="loginSsW.jsp" style="color: #fff;">首页</a> </span><span class="Top-span">&nbsp;|&nbsp;退出</span>
+        <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span>
     </div>
 </div>
 <div class="Main-Center"><!-- 左导航栏 -->
@@ -181,12 +183,10 @@
     </ul>
     <div class="Main-Content">
         <div class="Card-Head"> <!-- 卡片头 -->
-            <h3 class="Card-Head-Title">商家注册</h3>
+            <h3 class="Card-Head-Title">外联注册</h3>
         </div>
         <div class="Card-Body">
             <div class="Center-Form">
-            	
-
                 <s:form class="Center-Form" action ="userregisterdetail" method="post">
                         <table class="Center-Form">
                         <tr>
@@ -195,11 +195,11 @@
                         </tr>
                         <tr>
                             <td>组织详细说明</td>
-                            <td><s:textfield name="liaison.departmentdetail" label="请输入组织详细说明 "/> </td>
+                            <td><s:textfield name="liaison.departmentdetail" id="detail" label="请输入组织详细说明 "/></td>
                         </tr>
                         <tr>
                             <td>详细地址</td>
-                            <td><s:textfield name="liaison.address" label="请输入详细地址 "/> </td>
+                            <td><s:textfield name="liaison.address" id="address" label="请输入详细地址 "/></td>
                         </tr>
                         <tr>
                             <td></td>
@@ -220,4 +220,28 @@
 </div>
 
 </body>
+<script type="text/javascript">
+
+    function sb1() {
+
+        var detail = document.getElementById("detail");
+        var address = document.getElementById("address");
+
+        if (trim(detail.value) == null || trim(detail.value) == "") {
+            alert("请输入详细信息");
+            detail.focus();
+            return false;
+        }
+        if (trim(address.value) == null || trim(address.value) == "") {
+            alert("请输入地址");
+            address.focus();
+            return false;
+        }
+        return true;
+    }
+
+    function trim(str) { //删除左右两端的空格
+        return str.replace(/(^\s*)|(\s*$)/g, "");
+    }
+</script>
 </html>

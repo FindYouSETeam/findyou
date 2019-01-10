@@ -293,7 +293,7 @@ public class DemandAction {
 		Businessdemand businessdemand=userService.findBusinessdemandbyID(Integer.parseInt(businessdemandID));
 		Liaisondemand liaisondemand =userService.findLiaisondemandbyID(Integer.parseInt(liaisondemandID));
 		//DemandService demandService=new DemandService();
-		if(demandService.createIntention(businessdemand, liaisondemand))
+        if (demandService.BusinesscreateIntention(businessdemand, liaisondemand))
 		{
 			return "businesscreatesuccess";
 		}
