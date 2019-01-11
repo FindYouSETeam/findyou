@@ -223,7 +223,7 @@ td
 				<s:form class="Center-Form" action ="updateLiaisonInfo" method="post">
 					<table>
 						<tr><s:hidden name="liaisonuser.liaisonuserID" value="%{#application.liaisonuser.liaisonuserID}"/></tr>
-                        <tr><s:hidden name="liaisonuser.auditing" value="%{#application.liaisonuser.auditing}"/></tr>
+						<tr><s:hidden name="liaisonuser.auditing" value="%{#application.liaisonuser.auditing}"/></tr>
 					</table>
 					<table class="Center-Form">
 						<tr>
@@ -232,23 +232,19 @@ td
 						</tr>
 						<tr>
 							<td>请输入密码</td>
-                            <td><s:password name="login.password" value="%{#application.liaisonuser.login.password}"
-                                            label="请输入密码"/></td>
+							<td><s:password name="login.password" value="%{#application.liaisonuser.login.password}" label="请输入密码"/></td>
 						</tr>
 						<tr>
 							<td>请输入姓名</td>
-                            <td><s:textfield name="liaisonuser.name" value="%{#application.liaisonuser.name}"
-                                             label="请输入姓名"/></td>
+							<td><s:textfield name="liaisonuser.name" value="%{#application.liaisonuser.name}" label="请输入姓名"/></td>
 						</tr>
 						<tr>
 							<td>请输入身份证号码</td>
-                            <td><s:textfield name="liaisonuser.IDCard" value="%{#application.liaisonuser.IDCard}"
-                                             label="请输入身份证号码"/></td>
+							<td><s:textfield name="liaisonuser.IDCard" value="%{#application.liaisonuser.IDCard}" label="请输入身份证号码"/></td>
 						</tr>
 						<tr>
 							<td>请输入电话号码</td>
-                            <td><s:textfield name="liaisonuser.phone" value="%{#application.liaisonuser.phone}"
-                                             label="请输入电话号码"/></td>
+							<td><s:textfield name="liaisonuser.phone" value="%{#application.liaisonuser.phone}" label="请输入电话号码"/></td>
 						</tr>					
 						<tr>
 							<td></td>

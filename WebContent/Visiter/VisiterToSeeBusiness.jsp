@@ -232,7 +232,7 @@ a,a:hover
 
 <div class="Main-Topic" ><!-- 导航栏 -->
 	<div class="Main-Topic-Left" >
-		<span style="font-size:40px;">找到你</span> <span style="font-size:10px;">外联版</span>
+		<span style="font-size:40px;">找到你</span> 
 	</div>
 	<div class="Main-Topic-LeftUp" >
 		<span style="font-size:15px;">游客你好！</span> 

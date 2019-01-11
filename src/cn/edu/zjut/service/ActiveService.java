@@ -43,29 +43,29 @@ public class ActiveService implements IActiveService{
 	
 	public boolean AddActive(Shopactive shopactive)  //创建商家营销活动
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//ActiveDAO dao=new ActiveDAO();
 		try
 		{
 			//dao.getSession().beginTransaction();
-            ///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
+			///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
 			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String publisheddate=df.format(new Date());
 			shopactive.setPublisheddate(publisheddate);
 			Business business=(Business)application.getAttribute("business");
 			shopactive.setBusiness(business);
 			activeDAO.save(shopactive);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}
 		catch (Exception e) 
 		{
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 		} finally 
 		{
 			//dao.getSession().close();
-            //((ActiveDAO) activeDAO).getSession().close();
+			//((ActiveDAO) activeDAO).getSession().close();
 		}
 	}
 	public List findMyShopActive()  //显示自己的营销活动
@@ -75,14 +75,14 @@ public class ActiveService implements IActiveService{
 		//ActiveDAO dao=new ActiveDAO();
 		
 		hql="from Shopactive where businessID="+business.getBusinessID();
-
-        ///Transaction tran = null;
-        ///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
+		
+		///Transaction tran = null; 
+		///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
 		
 		List list=activeDAO.findByHql(hql);
-        ///tran.commit();
+		///tran.commit();
 		//dao.getSession().close();
-        //((ActiveDAO) activeDAO).getSession().close();
+		//((ActiveDAO) activeDAO).getSession().close();
 		return list;
 	}
 	public List findAllShopActive()  //显示所有的营销活动
@@ -93,39 +93,39 @@ public class ActiveService implements IActiveService{
 		hql="select new cn.edu.zjut.bean.AllShopActive(shop.shopname,shopactive.title,"
 				+ "shopactive.description,shopactive.publisheddate) "
 				+ "from Shop shop,Shopactive shopactive Where shop.business.businessID=shopactive.business.businessID";
-
-        ///Transaction tran = null;
-        ///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
+		
+		///Transaction tran = null; 
+		///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
 		
 		List list=activeDAO.findByHql(hql);
-        ///tran.commit();
+		///tran.commit();
 		//dao.getSession().close();
-        //((ActiveDAO) activeDAO).getSession().close();
+		//((ActiveDAO) activeDAO).getSession().close();
 		return list;
 	}
 
 	public boolean delMyShopActive(Shopactive shopactive)  //删除某条自己的营销活动
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//ActiveDAO dao=new ActiveDAO();		
 		//dao.getSession().close();
 		((ActiveDAO) activeDAO).getSession().close();
 		try
 		{
-            ///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
+			///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
 			activeDAO.del(shopactive);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}
 		catch (Exception e) 
 		{
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-            //((ActiveDAO)activeDAO).getSession().close();
+			//((ActiveDAO)activeDAO).getSession().close();
 		}
 	}
 	
@@ -134,18 +134,18 @@ public class ActiveService implements IActiveService{
 		String hql;
 		hql="from Shopactive where shopactiveID="+i;
 		//ActiveDAO dao=new ActiveDAO();
-        ///Transaction tran = null;
-        ///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
+		///Transaction tran = null; 
+		///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
 		
 		Shopactive shopactive=activeDAO.findById(i);
 		application.setAttribute("Shopactive", shopactive);
-        ///tran.commit();
+		///tran.commit();
 		return shopactive;
 	}
 	public boolean updateShopActiveInfo(Shopactive shopactive)  //更新营销活动信息
 	{
 		//ActiveDAO dao=new ActiveDAO();
-        ///Transaction tran = null;
+		///Transaction tran = null;
 		shopactive.setBusiness((Business)application.getAttribute("business"));
 		System.out.println(shopactive.getDescription());
 		System.out.println(shopactive.getShopactiveID());
@@ -155,20 +155,20 @@ public class ActiveService implements IActiveService{
 		try
 		{
 			//tran=dao.getSession().beginTransaction();
-            ///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
+			///tran=((ActiveDAO) activeDAO).getSession().beginTransaction();
 			activeDAO.update(shopactive);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}
 		catch (Exception e) 
 		{
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-            //((ActiveDAO) activeDAO).getSession().close();
+			//((ActiveDAO) activeDAO).getSession().close();
 		}
 	}
 }

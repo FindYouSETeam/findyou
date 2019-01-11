@@ -170,10 +170,10 @@
         <span style="font-size:40px;">找到你</span>
     </div>
     <div class="Main-Topic-LeftUp">
-
+       
     </div>
     <div class="Main-Topic-Right">
-        <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span>
+       <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span> 
     </div>
 </div>
 <div class="Main-Center"><!-- 左导航栏 -->
@@ -231,33 +231,35 @@
 </body>
 <script type="text/javascript">
 
-    function sb1() {
-
-        var name = document.getElementById("name");
-        var detail = document.getElementById("detail");
-        var address = document.getElementById("address");
-
-        if (trim(name.value) == null || trim(name.value) == "") {
+	function sb1(){
+       
+        var name=document.getElementById("name");
+        var detail=document.getElementById("detail");
+        var address=document.getElementById("address");
+        
+        if(trim(name.value)==null || trim(name.value)=="")
+            {
             alert("请输入店铺名");
             name.focus();
             return false;
         }
-
-        if (trim(detail.value) == null || trim(detail.value) == "") {
-            alert("请输入详细信息");
-            detail.focus();
-            return false;
-        }
-        if (trim(address.value) == null || trim(address.value) == "") {
-            alert("请输入地址");
-            address.focus();
-            return false;
-        }
+        
+        if(trim(detail.value)==null || trim(detail.value)=="")
+        {
+        	alert("请输入详细信息");
+	        detail.focus();
+	        return false;
+	    }
+        if(trim(address.value)==null || trim(address.value)=="")
+        {
+        	alert("请输入地址");
+	        address.focus();
+	        return false;
+	    }
         return true;
     }
-
-    function trim(str) { //删除左右两端的空格
-        return str.replace(/(^\s*)|(\s*$)/g, "");
+    function trim(str){ //删除左右两端的空格
+         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
 </script>
 </html>

@@ -17,7 +17,6 @@ public interface ITheorderService {
     HttpServletResponse response= ServletActionContext.getResponse();
     ServletContext application= ServletActionContext.getServletContext();
     HttpSession session= ServletActionContext.getRequest().getSession();
-
     public void setOrderDAO(IOrderDAO orderDAO);
 	//根据LiaisonuserID和status获取不同状态的order
 	public List getOrderByStatusAndLID(String status);

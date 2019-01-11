@@ -170,10 +170,10 @@
         <span style="font-size:40px;">找到你</span>
     </div>
     <div class="Main-Topic-LeftUp">
-
+ 
     </div>
     <div class="Main-Topic-Right">
-        <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span>
+       <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span> 
     </div>
 </div>
 <div class="Main-Center"><!-- 左导航栏 -->
@@ -195,11 +195,11 @@
                         </tr>
                         <tr>
                             <td>组织详细说明</td>
-                            <td><s:textfield name="liaison.departmentdetail" id="detail" label="请输入组织详细说明 "/></td>
+                            <td><s:textfield name="liaison.departmentdetail" id="detail" label="请输入组织详细说明 "/> </td>
                         </tr>
                         <tr>
                             <td>详细地址</td>
-                            <td><s:textfield name="liaison.address" id="address" label="请输入详细地址 "/></td>
+                            <td><s:textfield name="liaison.address" id="address" label="请输入详细地址 "/> </td>
                         </tr>
                         <tr>
                             <td></td>
@@ -222,26 +222,27 @@
 </body>
 <script type="text/javascript">
 
-    function sb1() {
+	function sb1(){
+       
+        var detail=document.getElementById("detail");
+        var address=document.getElementById("address");
 
-        var detail = document.getElementById("detail");
-        var address = document.getElementById("address");
-
-        if (trim(detail.value) == null || trim(detail.value) == "") {
-            alert("请输入详细信息");
-            detail.focus();
-            return false;
-        }
-        if (trim(address.value) == null || trim(address.value) == "") {
-            alert("请输入地址");
-            address.focus();
-            return false;
-        }
+        if(trim(detail.value)==null || trim(detail.value)=="")
+        {
+        	alert("请输入详细信息");
+	        detail.focus();
+	        return false;
+	    }
+        if(trim(address.value)==null || trim(address.value)=="")
+        {
+        	alert("请输入地址");
+	        address.focus();
+	        return false;
+	    }
         return true;
     }
-
-    function trim(str) { //删除左右两端的空格
-        return str.replace(/(^\s*)|(\s*$)/g, "");
+    function trim(str){ //删除左右两端的空格
+         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
 </script>
 </html>

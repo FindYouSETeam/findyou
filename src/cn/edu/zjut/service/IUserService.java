@@ -41,14 +41,13 @@ public interface IUserService {
 	HttpServletResponse response=ServletActionContext.getResponse();
 	ServletContext application=ServletActionContext.getServletContext();
 	HttpSession session=ServletActionContext.getRequest().getSession();
-
-    public boolean business_register_basic(Business business,Login login);  //商家注册基础模块
+	
+	public boolean business_register_basic(Business business,Login login);  //商家注册基础模块
 	public boolean business_register_detail(Business business,Shop shop); //商家注册详细模块
 	public boolean user_register_basic(Liaisonuser liaisonuser,Login login);  //用户注册基础模块
 	public boolean user_register_detail(Liaisonuser liaisonuser,Liaison liaison); //用户注册详细模块
 	public boolean createShopAssess( Shopassess shopassess,int orderID);  //评价店铺
-
-    public boolean LoginService(Login login, String type);              //登录
+	public boolean LoginService(Login login,String type);              //登录
 	public Businessdemand findBusinessdemandbyID(int businessdemandID); //用businessdemandID查询指定商家需求信息
 	public Liaisondemand findLiaisondemandbyID(int liaisondemandID); //用liaisondemandID查外联指定需求信息
 	public List findallbusinessService(); //外联登录显示所有商家的需求列表
@@ -58,10 +57,8 @@ public interface IUserService {
 	public boolean createLiaisonAssess( Liaisonassess assess,int orderID); //评价外联
 	public List findBusinessdemandbybussinessID(int businessID); //用businessID查询历史发布订单
 	public List findliaisondemandbyliaisonID(int liaisonID); //外联查看历史订单
-
-    public boolean alreadyassesshop(int orderID);//判断是否评价过商家
-
-    public boolean alreadyassesliaison(int orderID);//判断是否评价过外联
-
+	public boolean alreadyassesshop(int orderID);//判断是否评价过商家
+	public boolean alreadyassesliaison(int orderID);//判断是否评价过外联
+	
 
 }

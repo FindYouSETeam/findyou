@@ -293,7 +293,7 @@ public class DemandAction {
 		Businessdemand businessdemand=userService.findBusinessdemandbyID(Integer.parseInt(businessdemandID));
 		Liaisondemand liaisondemand =userService.findLiaisondemandbyID(Integer.parseInt(liaisondemandID));
 		//DemandService demandService=new DemandService();
-        if (demandService.BusinesscreateIntention(businessdemand, liaisondemand))
+		if(demandService.BusinesscreateIntention(businessdemand, liaisondemand))
 		{
 			return "businesscreatesuccess";
 		}
@@ -317,4 +317,27 @@ public class DemandAction {
 		historybusinessdemandlist=userService.findBusinessdemandbybussinessID(businessID);
 		return "seesuccess";
 	}
+	
+	public String showbusinessdetail()  //显示商家的详细信息
+	{
+		
+		int SeeDetail=1;
+		application.setAttribute("SeeDetail", SeeDetail);
+		
+		
+		demandlist=userService.findallbusinessService();
+		Shop shop=demandService.findShopbyID(Integer.parseInt(shopID));
+		application.setAttribute("BusinessDetail", shop);
+		return "success";
+	}
+	public String closebusinessdetail()  //关闭商家的详细信息
+	{
+		
+		int SeeDetail=0;
+		application.setAttribute("SeeDetail", SeeDetail);
+		
+		demandlist=userService.findallbusinessService();
+		return "success";
+	}
+
 }

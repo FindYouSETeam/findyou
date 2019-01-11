@@ -281,12 +281,17 @@ public class UserAction{
 	}
 	public String findallliaison()   //商家页面点击首页显示所有的外联列表
 	{
+		System.out.println("点击回首页按钮");
 		//UserService userServ=new UserService();
-		demandlist=userService.findliaisonService();  
+		Business business=(Business) application.getAttribute("business");
+		int businessID=business.getBusinessID();
+		businessdemandlist=userService.findBusinessdemandbybussinessID(businessID);
+		demandlist=userService.findliaisonService();   
+		
 		return "success";
 	}
 
-    public String CreateShopAssess() //评价商店
+	public String CreateShopAssess() //评价商店
 	{
 		Theorder t=new Theorder();
 		t.setOrderID(orderID);
@@ -322,10 +327,10 @@ public class UserAction{
 		System.out.println(orderID);
 		application.setAttribute("orderID", orderID);
 		System.out.println("获取到");
-        if (userService.alreadyassesliaison(orderID) == false)
-            return "createsuccess";
-        else return "createfail";
-    }
+		if(userService.alreadyassesliaison(orderID)==false)
+			return "createsuccess";
+		else return "createfail";
+	}
 	
 	public String GoCreateShopAssess()//跳转评价商家
 	{		
@@ -333,16 +338,16 @@ public class UserAction{
 		System.out.println(orderID);
 		application.setAttribute("orderID", orderID);
 		System.out.println("获取到");
-        if (userService.alreadyassesshop(orderID) == false)
-            return "createsuccess";
-        else
-            return "createfail";
+		if(userService.alreadyassesshop(orderID)==false)
+			return "createsuccess";
+		else 
+			return "createfail";
 	}
 	
 	public String judgeliaison()  //跳转审核外联页
 	{
 		//AdminService adminServ =new AdminService();
-        System.out.println("0liaison");
+		System.out.println("0liaison");
 		judgeliaisonlist=adminService.liaisonJudge();
 		application.setAttribute("judgeliaisonlist", judgeliaisonlist);
 		return "success";
@@ -357,7 +362,7 @@ public class UserAction{
 	public String passliaison()
 	{
 		//AdminService adminServ =new AdminService();
-        System.out.println("pass");
+		System.out.println("pass");
 		if(pass.equals("1"))
 		{
 			if(adminService.passliaison(Integer.parseInt(liaisonuserID))==true)

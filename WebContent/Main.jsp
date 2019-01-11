@@ -134,7 +134,7 @@
 	              <table >
 	                <tr>
 	                    <td style="text-align:left;">用户名</td>
-                        <td><s:textfield name="login.account" label="请输入用户名" onblur="chkvalue(this)"/></td>
+	                    <td><s:textfield name="login.account" label="请输入用户名" onblur="chkvalue(this)"/></td>
 	                </tr>
 	                <tr>
 	                    <td style="text-align:left;">密码</td>
@@ -287,12 +287,11 @@
         $('#showdiv_login').hide();  //隐藏弹窗
         $('#cover').css('display', 'none');   //显示遮罩层
     }
-
     //检查用户名是否为空
     function chkvalue(txt) {
-        if (txt.value == "")
-            alert("请输入用户名");
-    }
+ 	   if(txt.value=="") 
+     	   alert("请输入用户名");    	  
+ 	}
 
 </script>
 </html>

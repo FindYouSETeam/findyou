@@ -79,6 +79,51 @@
 		<action name="closeliaisondetail" class="demandAction" method="closeliaisondetail">
 			<result name="success">/Shanjia/loginSsS.jsp</result>
 		</action>
+		<!-- 显示商家信息 -->
+		<action name="showbusinessdetail" class="demandAction" method="showbusinessdetail">
+			<result name="success">/Wailian/loginSsW.jsp</result>
+		</action>
+		<!-- 关闭商家信息 -->
+		<action name="closebusinessdetail" class="demandAction" method="closebusinessdetail">
+			<result name="success">/Wailian/loginSsW.jsp</result>
+		</action>
+		<!-- 外联查看进行中订单双方详情 -->
+		<action name="LiaisonSeeDoingDetail" class="theorderAction" method="LiaisonSeeDoingDetail">
+			<result name="LiaisonSeeDoingDetailSuccess">/Wailian/ToSeeOrderDoingW.jsp</result>
+			
+		</action>
+			<!-- 外联关闭进行中订单双方详情 -->
+		<action name="closeLiaisonSeeDoingDetail" class="theorderAction" method="closeLiaisonSeeDoingDetail">
+			<result name="closeLiaisonSeeDoingDetailSuccess">/Wailian/ToSeeOrderDoingW.jsp</result>			
+		</action>
+			<!-- 外联查看已完成订单双方详情 -->
+		<action name="LiaisonSeeDoneDetail" class="theorderAction" method="LiaisonSeeDoneDetail">
+			<result name="LiaisonSeeDoneDetailSuccess">/Wailian/ToSeeOrderDoneW.jsp</result>
+			
+		</action>
+			<!-- 外联关闭已完成订单双方详情 -->
+		<action name="closeLiaisonSeeDoneDetail" class="theorderAction" method="closeLiaisonSeeDoneDetail">
+			<result name="closeLiaisonSeeDoneDetailSuccess">/Wailian/ToSeeOrderDoneW.jsp</result>			
+		</action>
+			<!-- 商家查看进行中订单双方详情 -->
+		<action name="BusinessSeeDoingDetail" class="theorderAction" method="BusinessSeeDoingDetail">
+			<result name="BusinessSeeDoingDetailSuccess">/Shanjia/ToSeeOrderDoingS.jsp</result>
+			
+		</action>
+			<!-- 商家关闭进行中订单双方详情 -->
+		<action name="closeBusinessSeeDoingDetail" class="theorderAction" method="closeBusinessSeeDoingDetail">
+			<result name="closeBusinessSeeDoingDetailSuccess">/Shanjia/ToSeeOrderDoingS.jsp</result>			
+		</action>
+			<!-- 商家查看已完成订单双方详情 -->
+		<action name="BusinessSeeDoneDetail" class="theorderAction" method="BusinessSeeDoneDetail">
+			<result name="BusinessSeeDoneDetailSuccess">/Shanjia/ToSeeOrderDoneS.jsp</result>
+			
+		</action>
+			<!-- 商家关闭已完成订单双方详情 -->
+		<action name="closeBusinessSeeDoneDetail" class="theorderAction" method="closeBusinessSeeDoneDetail">
+			<result name="closeBusinessSeeDoneDetailSuccess">/Shanjia/ToSeeOrderDoneS.jsp</result>			
+		</action>
+		
 		<!-- 接受或同意-->
 		<action name="rejectBusinessrequestOrnot" class="demandAction" method="rejectBusinessrequestOrnot">
 			<result name="Businesssuccess">/Shanjia/OperateSuccess.jsp</result>
@@ -171,8 +216,10 @@
 		</action>
 			<!-- 把进行中订单确认完成 -->
 		<action name="finishOrder" class="theorderAction" method="finishOrder">
-			<result name="success">/Shanjia/ToSeeOrderDoingS.jsp</result>
+			<result name="Businesssuccess">/Shanjia/OperateSuccess.jsp</result>
+			<result name="Liaisonsuccess">/Wailian/OperateSuccess.jsp</result>
 		</action>
+
 		<!-- 跳转到评价商家页面 -->
 		<action name="GoCreateShopAssess" class="userAction" method="GoCreateShopAssess">
 			<result name="createsuccess">/Wailian/assessForBusiness.jsp</result>

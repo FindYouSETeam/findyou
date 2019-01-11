@@ -170,10 +170,10 @@
         <span style="font-size:40px;">找到你</span>
     </div>
     <div class="Main-Topic-LeftUp">
-
+       
     </div>
     <div class="Main-Topic-Right">
-        <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span>
+        <span class="Top-span"><a href="exit.action" style="color: #fff;">退出</a></span> 
     </div>
 </div>
 <div class="Main-Center"><!-- 左导航栏 -->
@@ -195,7 +195,7 @@
                         </tr>
                         <tr>
                             <td>密码</td>
-                            <td><s:password name="login.password" id="password" label="请输入密码"/></td>
+                            <td><s:password name="login.password" id="password" label="请输入密码"/> </td>
                         </tr>
                         <tr>
                             <td>姓名</td>
@@ -230,52 +230,55 @@
 </body>
 <script type="text/javascript">
 
-    function sb1() {
+	function sb1(){
         var username = document.getElementById("account");
         var password = document.getElementById("password");
-        var name = document.getElementById("name");
-        var IDCard = document.getElementById("IDCard");
-        var phone = document.getElementById("phone");
-        if (trim(username.value) == null || trim(username.value) == "") {
+        var name=document.getElementById("name");
+        var IDCard=document.getElementById("IDCard");
+        var phone=document.getElementById("phone");
+        if(trim(username.value)==null || trim(username.value)==""){
             alert("请输入用户名");
             username.focus();
             return false;
         }
-        if (trim(password.value) == null || trim(password.value) == "") {
+        if(trim(password.value)==null || trim(password.value)==""){
             alert("请输入密码");
             password.focus();
             return false;
         }
-        if (trim(name.value) == null || trim(name.value) == "") {
+        if(trim(name.value)==null || trim(name.value)=="")
+            {
             alert("请输入姓名");
             name.focus();
             return false;
         }
-        if (trim(IDCard.value) == null || trim(IDCard.value) == "") {
-            alert("请输入身份证");
-            IDCard.focus();
-            return false;
-        }
-        if (trim(phone.value) == null || trim(phone.value) == "") {
-            alert("请输入电话");
-            phone.focus();
-            return false;
-        }
-        if (trim(phone.value) != null || trim(phone.value) != "") {
-            var isok = isNaN(trim(phone.value));//判断是否为数值类型 bool,false为数字类型，true为字符
-
-            if (isok) {
-                phone.value = "";
-                alert("请输入数字！");
-                return false;
-            }
-
-        }
+        if(trim(IDCard.value)==null || trim(IDCard.value)=="")
+        {
+        	alert("请输入身份证");
+	        IDCard.focus();
+	        return false;
+	    }
+        if(trim(phone.value)==null || trim(phone.value)=="")
+        {
+        	alert("请输入电话");
+	        phone.focus();
+	        return false;
+	    }
+        if(trim(phone.value)!=null || trim(phone.value)!="")
+        {
+        	 var isok = isNaN(trim(phone.value));//判断是否为数值类型 bool,false为数字类型，true为字符
+        	 
+             if (isok) {
+                 phone.value="";
+                 alert("请输入数字！");
+                 return false;
+             }
+	        
+	    }
         return true;
     }
-
-    function trim(str) { //删除左右两端的空格
-        return str.replace(/(^\s*)|(\s*$)/g, "");
+    function trim(str){ //删除左右两端的空格
+         return str.replace(/(^\s*)|(\s*$)/g, "");
     }
 </script>
 </html>

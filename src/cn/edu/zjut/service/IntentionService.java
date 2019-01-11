@@ -95,25 +95,25 @@ public class IntentionService implements IIntentionService
 		     //System.out.println("service2"); 
 		     
 		     //tran = dao.getSession().beginTransaction();
-            ///tran = ((IntentionDAO) intentionDAO).getSession().beginTransaction();
+		     ///tran = ((IntentionDAO) intentionDAO).getSession().beginTransaction();
 		     
 		     intention.setStatus("已取消");
 		     intentionDAO.update(intention);
 		     //System.out.println("service3");
-            ///tran.commit();
-            //((IntentionDAO) intentionDAO).getSession().close();
+		     ///tran.commit();
+		     //((IntentionDAO) intentionDAO).getSession().close();
 		     return true;
 		} 
 		catch (Exception e) 
-		{
-            ///if(tran!= null)
-            ///tran.rollback();
+		{ 
+			 ///if(tran!= null) 
+			 ///tran.rollback(); 
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-            //((IntentionDAO) intentionDAO).getSession().close();
+			//((IntentionDAO) intentionDAO).getSession().close();
 		}
     } 
 }

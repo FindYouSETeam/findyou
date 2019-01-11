@@ -212,8 +212,8 @@ a,a:hover
 #showdiv /* 弹窗 */
 {
 	overflow: scroll;
-	width: 360px; 
-	height: 360px;
+	min-width: 360px; 
+	min-height: 360px;
 	position: fixed ; 
 	left: 50%; 
 	top: 50%;

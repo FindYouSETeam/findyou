@@ -138,7 +138,7 @@ a,a:hover
 }
 .Card-Body
 {
-	height: 450px;
+	min-height: 450px;
     line-height: 48px;
     border: 2px solid #e9e9e9;
 	border-radius:0px, 5px;
@@ -258,8 +258,78 @@ display:none;
 {
 	margin: 20% 10%;
 }
+#showdiv1 /* 弹窗 */
+{
+	width: 360px; 
+	min-height: 360px;
+	position: fixed ; 
+	left: 50%; 
+	top: 50%;
+	z-index: 3;
+	margin-left: -180px;
+	margin-top:-180px; 
+
+	background: #fff;
+} 
+#cover1
+{
+	background: #000;
+	position: fixed;
+	left: 0px; 
+	top: 0px; 
+	width: 100%;
+	height:100%;
+	filter: alpha(opacity=30); 
+	opacity: 0.3; 
+	display: show;
+	z-index: 2;
+	 
+}
 </style>
 </head>
+<% 
+	int l=0;
+	if(application.getAttribute("SeeDetail")!=null)
+  		{
+			System.out.println(application.getAttribute("SeeDetail"));
+			l=(int)application.getAttribute("SeeDetail");
+			System.out.println("!!!");
+			System.out.println(l);
+  		}
+   
+   if (l!=0)
+   {
+ 	%> 
+<!-- 弹窗 -->
+
+<!-- 遮罩层 -->
+<div id="cover1">
+     
+</div>
+<div id="showdiv1">
+    <!-- 标题 -->
+    <div class="title">
+        	商家详情
+    </div>
+    <!-- 内容 -->
+    <div  class="Center-Show"  >
+       	 <table class="Card-Body-Table">
+	       	 <tr>
+	       	 	<td style="height: 50px">商家名称</td>
+	       	 	<td><s:property value="%{#application.BusinessDetail.shopname}"/></td>
+	       	 </tr>
+	       	 <tr >
+	       	 	<td style="height: 50px">商家地址</td>
+	       	 	<td><s:property value="%{#application.BusinessDetail.address}"/></td>
+	       	 </tr>
+	       	 
+       	 </table>
+       	 <div style="padding-left: 40%;"><a href="closebusinessdetail.action" style="font-size:20px" onclick="closeWindow()">关闭</a></div>
+    </div>
+    <!-- 按钮 -->
+</div>
+<!-- 弹窗结束 -->
+<% } %>
 
 <div class="Main-Topic" ><!-- 导航栏 -->
 	<div class="Main-Topic-Left" >
@@ -302,7 +372,7 @@ display:none;
 			<tr>
 			<s:iterator value="demandlist" >
 			<tr>
-			<td><s:property value="shopname"/></td>
+			<td><a href="showbusinessdetail.action?shopID=<s:property value="shopID"/>" ><s:property value="shopname"/></a></td>
 			<td><s:property value="mincapital"/></td>
 			<td><s:property value="maxcapital"/></td>
 			<td><s:property value="overallnum"/></td>

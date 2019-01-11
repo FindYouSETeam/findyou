@@ -83,23 +83,23 @@ public class UserService implements IUserService{
 	
 	public boolean business_register_basic(Business business,Login login)  //商家注册基础模块
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//BusinessDAO dao=new BusinessDAO();
 		//LoginDAO logindao=new LoginDAO();
 		try
 		{
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			loginDAO.save(login);
 			business.setLogin(login);
 			application.setAttribute("business", business);
 			businessDAO.save(business);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+			//((BusinessDAO) businessDAO).getSession().close();
 			}
 			}
 	public boolean business_register_detail(Business business,Shop shop) //商家注册详细模块
@@ -107,87 +107,87 @@ public class UserService implements IUserService{
 		business=(Business)application.getAttribute("business");
 		String hql = "from Business where account='" + business.getLogin().getAccount()
 				+ "'";
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//BusinessDAO dao=new BusinessDAO();
 		//ShopDAO shopdao=new ShopDAO();
 		try
 		{
 			List list=businessDAO.findByHql(hql);
-            //((BusinessDAO) businessDAO).getSession().close();
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			//((BusinessDAO) businessDAO).getSession().close();
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			business=(Business)list.get(0);
 			shop.setBusiness(business);
 			shopDAO.save(shop);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+			//((BusinessDAO) businessDAO).getSession().close();
 			}
 	}
 	public boolean user_register_basic(Liaisonuser liaisonuser,Login login)  //用户注册基础模块
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//LiaisonuserDAO dao=new LiaisonuserDAO();
 		//LoginDAO logindao=new LoginDAO();
 		try
 		{
-            ///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
+			///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
 			loginDAO.save(login);
 			liaisonuser.setLogin(login);
 			application.setAttribute("liaisonuser", liaisonuser);
 			liaisonuserDAO.save(liaisonuser);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+				//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
 			}
 			}
 	public boolean user_register_detail(Liaisonuser liaisonuser,Liaison liaison) //用户注册详细模块
 	{
 		liaisonuser=(Liaisonuser)application.getAttribute("liaisonuser");
 		String hql= "from Liaisonuser where account='" + liaisonuser.getLogin().getAccount()+"'";
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//BusinessDAO dao=new BusinessDAO();
 		//LiaisonDAO liasiondao=new LiaisonDAO();
 		try
 		{
 			List list=businessDAO.findByHql(hql);
-            //((BusinessDAO) businessDAO).getSession().close();
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			//((BusinessDAO) businessDAO).getSession().close();
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			liaisonuser=(Liaisonuser)list.get(0);
 			liaison.setLiaisonuser(liaisonuser);
 			liaisonDAO.save(liaison);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+			//((BusinessDAO) businessDAO).getSession().close();
 			}
 	}
 	public boolean createShopAssess( Shopassess shopassess,int orderID)  //评价店铺
 	{
-        ///Transaction tran=null;
+		///Transaction tran=null;
 		//ShopassessDAO dao=new ShopassessDAO();
 		try
 		{
-            ///tran=((ShopassessDAO) shopassessDAO).getSession().beginTransaction();
+			///tran=((ShopassessDAO) shopassessDAO).getSession().beginTransaction();
 			//shopassess.getTheorder().setOrderID(orderID);
 			shopassessDAO.save(shopassess);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((ShopassessDAO) shopassessDAO).getSession().close();
+				//((ShopassessDAO) shopassessDAO).getSession().close();
 			}
 		
 	}
@@ -198,8 +198,8 @@ public class UserService implements IUserService{
 	{
 		if(type.equals("liaisonuser"))
 		{
-            ///Transaction tran = null;
-            ///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
+			///Transaction tran = null; 
+			///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
 			
 			//LiaisonuserDAO dao=new LiaisonuserDAO();
 			hql=  "from Liaisonuser where account='"+login.getAccount()+"'";
@@ -208,14 +208,14 @@ public class UserService implements IUserService{
 			application.setAttribute("liaisonuser", liaisonuser);
 			System.out.println("外联登录放application");
 			System.out.println(liaisonuser.getName());
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
-            ///tran.commit();
+			//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+			///tran.commit();
 
 		}
 		if(type.equals("business"))
 		{
-            ///Transaction tran = null;
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			///Transaction tran = null; 
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			
 			//BusinessDAO dao= new BusinessDAO(); 	
 			hql= "from Business where account='"+login.getAccount()+"'";
@@ -224,8 +224,8 @@ public class UserService implements IUserService{
 			application.setAttribute("business", business);
 			System.out.println("商家登录放application");
 			System.out.println(business.getName());
-            //((BusinessDAO) businessDAO).getSession().close();
-            ///tran.commit();
+			//((BusinessDAO) businessDAO).getSession().close();
+			///tran.commit();
 		}
 		return true;
 		}
@@ -239,13 +239,13 @@ public class UserService implements IUserService{
 		List list;
 		//BusinessdemandDAO dao=new BusinessdemandDAO();
 		hql="from Businessdemand where businessdemandID="+businessdemandID;
-        ///Transaction tran = null;
-        ///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
+		///Transaction tran = null; 
+		///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
 		
 		list=businessdemandDAO.findByHql(hql);
-        ///tran.commit();
+		///tran.commit();
 		Businessdemand businessdemand=(Businessdemand)list.get(0);
-        //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+		//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		return businessdemand;
 	}
 	public Liaisondemand findLiaisondemandbyID(int liaisondemandID) //用liaisondemandID查外联指定需求信息
@@ -254,13 +254,13 @@ public class UserService implements IUserService{
 		List list;
 		//BusinessdemandDAO dao=new BusinessdemandDAO();
 		hql="from Liaisondemand where liaisondemandID="+liaisondemandID;
-        //Transaction tran = null;
-        //tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
+		//Transaction tran = null; 
+		//tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
 		
 		list=businessdemandDAO.findByHql(hql);
-        //tran.commit();
+		//tran.commit();
 		Liaisondemand liaisondemand=(Liaisondemand)list.get(0);
-        //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+		//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		return liaisondemand;
 	}
 	public List findallbusinessService() //外联登录显示所有商家的需求列表
@@ -272,12 +272,12 @@ public class UserService implements IUserService{
 				+ "demand.maxcapital,demand.overallnum,demand.status,demand.business.businessID,"
 				+ "shop.shopID,shop.shopname,shop.qualification,shop.shoptype,shop.shopdetail,shop.shopfront,shop.address) "
 				+ "from Businessdemand demand,Shop shop Where demand.business.businessID=shop.business.businessID";
-        ///Transaction tran = null;
-        ///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
+		///Transaction tran = null; 
+		///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
 		
 		list=businessdemandDAO.findByHql(hql);
-        ///tran.commit();
-        //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+		///tran.commit();
+		//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		return list;
 	}
 	public List findliaisonService() //商家登录显示所有外联的需求列表
@@ -291,73 +291,73 @@ public class UserService implements IUserService{
 					+ "liaison.departmentdetail,liaison.address,liaisonuser.phone)"
 					+ "from Liaisondemand demand,Liaison liaison,Liaisonuser liaisonuser Where demand.liaisonuser.liaisonuserID=liaison.liaisonuser.liaisonuserID"
 					+ " and liaison.liaisonuser.liaisonuserID=liaisonuser.liaisonuserID";
-        ///Transaction tran = null;
-        ///tran=((LiaisondemandDAO) liaisondemandDAO).getSession().beginTransaction();
+			///Transaction tran = null; 
+			///tran=((LiaisondemandDAO) liaisondemandDAO).getSession().beginTransaction();
 			
 			list=liaisondemandDAO.findByHql(hql);
-        ///tran.commit();
-        //((LiaisondemandDAO) liaisondemandDAO).getSession().close();
+			///tran.commit();
+			//((LiaisondemandDAO) liaisondemandDAO).getSession().close();
 			
 			return list;
 	}
 	public boolean updateBusinessInfo(Business business,Login login)   //更新商家信息
 	{
 		//BusinessDAO businessdao=new BusinessDAO();
-        //LoginDAO logindao=new LoginDAO();
-        ///Transaction tran = null;
+		//LoginDAO logindao=new LoginDAO();
+		///Transaction tran = null; 
 		try
 		{
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
-            loginDAO.update(login);
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			loginDAO.update(login);
 			business.setLogin(login);
 			application.setAttribute("business", business);
 			businessDAO.update(business);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+			//((BusinessDAO) businessDAO).getSession().close();
 			}
 	}
 	public boolean updateLiaisonInfo(Liaisonuser liaisonuser,Login login)   //更新外联信息
 	{
 		//LiaisonuserDAO liaisonuserdao=new LiaisonuserDAO();
 		//LoginDAO logindao=new LoginDAO();
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
-            ///tran=((LoginDAO) loginDAO).getSession().beginTransaction();
+			///tran=((LoginDAO) loginDAO).getSession().beginTransaction();
 			liaisonuser.setLogin(login);
 			login.setLiaisonuser(liaisonuser);
 			loginDAO.update(login);
 			liaisonuserDAO.update(liaisonuser);
-            ///tran.commit();
+			///tran.commit();
 			application.setAttribute("liaisonuser", liaisonuser);
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+				//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
 			}
 	}
 	public boolean createLiaisonAssess( Liaisonassess assess,int orderID) //评价外联
 	{
-        ///Transaction tran=null;
+		///Transaction tran=null;
 		//LiaisonassessDAO dao=new LiaisonassessDAO();
 		try
 		{
-            ///tran=((LiaisonassessDAO) liaisonassessDAO).getSession().beginTransaction();
+			///tran=((LiaisonassessDAO) liaisonassessDAO).getSession().beginTransaction();
 			liaisonassessDAO.save(assess);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((LiaisonassessDAO) liaisonassessDAO).getSession().close();
+			//((LiaisonassessDAO) liaisonassessDAO).getSession().close();
 			}
 		
 	}
@@ -371,13 +371,13 @@ public class UserService implements IUserService{
 		hql="select new cn.edu.zjut.bean.showBusinessdemand(demand.businessdemandID,demand.publisheddate,demand.period,demand.mincapital,"
 				+ "demand.maxcapital,demand.overallnum,demand.status,demand.business.businessID,"
 				+ "shop.shopID,shop.shopname,shop.qualification,shop.shoptype,shop.shopdetail,shop.shopfront,shop.address) "
-				+ "from Businessdemand demand,Shop shop Where demand.business.businessID=shop.business.businessID and demand.business.businessID="+businessID;
-        ///Transaction tran = null;
-        ///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
-
-        list = businessdemandDAO.findByHql(hql);
-        ///tran.commit();
-        //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+				+ "from Businessdemand demand,Shop shop Where demand.business.businessID=shop.business.businessID and demand.business.businessID="+businessID;		
+		///Transaction tran = null; 
+		///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
+		
+		list=businessdemandDAO.findByHql(hql);	
+		///tran.commit();	
+		//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		return list;
 	}
 	public List findliaisondemandbyliaisonID(int liaisonID) //外联查看历史订单
@@ -392,37 +392,40 @@ public class UserService implements IUserService{
 					+ "liaison.departmentdetail,liaison.address,liaisonuser.phone)"
 					+ "from Liaisondemand demand,Liaison liaison,Liaisonuser liaisonuser Where demand.liaisonuser.liaisonuserID=liaison.liaisonuser.liaisonuserID"
 					+ " and liaison.liaisonuser.liaisonuserID=liaisonuser.liaisonuserID and demand.liaisonuser.liaisonuserID="+liaisonID;
-        ///Transaction tran = null;
-        ///tran=((LiaisondemandDAO) liaisondemandDAO).getSession().beginTransaction();
+			///Transaction tran = null; 
+			///tran=((LiaisondemandDAO) liaisondemandDAO).getSession().beginTransaction();
 			
 			list=liaisondemandDAO.findByHql(hql);
-        ///tran.commit();
-        //((LiaisondemandDAO) liaisondemandDAO).getSession().close();
+			///tran.commit();
+			//((LiaisondemandDAO) liaisondemandDAO).getSession().close();
 			
 			return list;
 	}
+	
 
-
-    public boolean alreadyassesshop(int orderID)//判断是否评价过商家
-    {
-        String hql;
-        List list;
-        hql = "from Shopassess where orderID=" + orderID;
-        list = shopassessDAO.findByHql(hql);
-        if (list.size() == 0) {
-            return false;
-        } else return true;
-    }
-
-    public boolean alreadyassesliaison(int orderID)//判断是否评价过外联
-    {
-        String hql;
-        List list;
-        hql = "from Liaisonassess where orderID=" + orderID;
-        list = liaisonassessDAO.findByHql(hql);
-        if (list.size() == 0) {
-            return false;
-        } else return true;
-    }
+	public boolean alreadyassesshop(int orderID)//判断是否评价过商家
+	{
+		String hql;
+		List list;
+		hql="from Shopassess where orderID="+orderID;
+		list=shopassessDAO.findByHql(hql);
+		if(list.size()==0)
+		{
+			return false;
+		}
+		else return true;
+	}
+	public boolean alreadyassesliaison(int orderID)//判断是否评价过外联
+	{
+		String hql;
+		List list;
+		hql="from Liaisonassess where orderID="+orderID;
+		list=liaisonassessDAO.findByHql(hql);
+		if(list.size()==0)
+		{
+			return false;
+		}
+		else return true;
+	}
 
 }

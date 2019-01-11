@@ -283,8 +283,89 @@ display:none;
 {
 	margin: 20% 10%;
 }
+#showdiv1 /* 弹窗 */
+{
+	width: 360px; 
+	min-height: 360px;
+	position: fixed ; 
+	left: 50%; 
+	top: 50%;
+	z-index: 3;
+	margin-left: -180px;
+	margin-top:-180px; 
+
+	background: #fff;
+} 
+#cover1
+{
+	background: #000;
+	position: fixed;
+	left: 0px; 
+	top: 0px; 
+	width: 100%;
+	height:100%;
+	filter: alpha(opacity=30); 
+	opacity: 0.3; 
+	display: show;
+	z-index: 2;
+	 
+}
 </style>
 </head>
+<% 
+	int l=0;
+	if(application.getAttribute("SeeDetail")!=null)
+  		{
+			System.out.println(application.getAttribute("SeeDetail"));
+			l=(int)application.getAttribute("SeeDetail");
+			System.out.println("!!!");
+			System.out.println(l);
+  		}
+   
+   if (l!=0)
+   {
+ 	%> 
+<!-- 弹窗 -->
+
+<!-- 遮罩层 -->
+<div id="cover1">
+     
+</div>
+<div id="showdiv1">
+    <!-- 标题 -->
+    <div class="title">
+        	外联商家详情
+    </div>
+    <!-- 内容 -->
+    <div  class="Center-Show"  >
+       	 <table class="Card-Body-Table">
+	       	 <tr>
+	       	 	<td style="height: 50px">外联活动名称</td>
+	       	 	<td><s:property value="%{#application.liaisondemand.activityname}"/></td>
+	       	 </tr>
+	       	 <tr >
+	       	 	<td style="height: 50px">外联最小金额</td>
+	       	 	<td><s:property value="%{#application.liaisondemand.mincapital}"/></td>
+	       	 </tr>
+	       	 <tr>
+	       	 	<td style="height: 50px">外联最大金额</td>
+	       	 	<td><s:property value="%{#application.liaisondemand.maxcapital}"/></td>
+	       	 </tr>
+	       	 <tr>
+	       	 	<td style="height: 50px">商家最小金额</td>
+	       	 	<td><s:property value="%{#application.businessdemand.mincapital}"/></td>
+	       	 </tr>
+	       	 <tr >
+	       	 	<td style="height: 50px">商家最大金额</td>
+	       	 	<td><s:property value="%{#application.businessdemand.maxcapital}"/></td>
+	       	 </tr>
+       	 </table>
+       	 <div style="padding-left: 40%;"><a href="closeBusinessSeeDoingDetail.action" style="font-size:20px" onclick="closeWindow()">关闭</a></div>
+    </div>
+    <!-- 按钮 -->
+</div>
+<!-- 弹窗结束 -->
+<% } %>
 
 <div class="Main-Topic" ><!-- 导航栏 -->
 	<div class="Main-Topic-Left" >
@@ -328,7 +409,7 @@ display:none;
 			<tr>
 				<td><s:property value="orderID"/></td>
 				<td><s:property value="startTime"/></td>
-                <td><s:property value="businessdemandID"/>,<s:property value="liaisondemandID"/></td>
+				<td><a href="BusinessSeeDoingDetail.action?businessdemandID=<s:property value="businessdemandID"/>&liaisondemandID=<s:property value="liaisondemandID"/>">查看详情</a></td>
 				<td><a href="finishOrder.action?orderID=<s:property value="orderID"/>">完成</a></td>
 			</tr>
 			</s:iterator>

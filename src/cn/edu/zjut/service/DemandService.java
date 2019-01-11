@@ -79,12 +79,12 @@ public class DemandService implements IDemandService{
 
 	public boolean saveliaDemandService(Liaisondemand liaisondemand)  //创建外联需求
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//LiaisondemandDAO dao=new LiaisondemandDAO();
 		try
 		{
 			//tran=dao.getSession().beginTransaction();
-            ///tran=((LiaisondemandDAO) liaisondemandDAO).getSession().beginTransaction();
+			///tran=((LiaisondemandDAO) liaisondemandDAO).getSession().beginTransaction();
 			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String publisheddate=df.format(new Date());
 			liaisondemand.setPublisheddate(publisheddate);
@@ -92,30 +92,30 @@ public class DemandService implements IDemandService{
 			Liaisonuser liaisonuser=(Liaisonuser)application.getAttribute("liaisonuser");
 			liaisondemand.setLiaisonuser(liaisonuser);
 			liaisondemandDAO.save(liaisondemand);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}
 		catch (Exception e) 
 		{
-            ///if(tran != null)
-            ///tran.rollback();
+			///if(tran != null)
+			///tran.rollback();
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-            //((LiaisondemandDAO) liaisondemandDAO).getSession().close();
+			//((LiaisondemandDAO) liaisondemandDAO).getSession().close();
 		}
 	}
 	
 	public boolean savebusinessDemandService(Businessdemand businessdemand)  //创建商家需求
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//BusinessdemandDAO dao=new BusinessdemandDAO();
 		try
 		{
 			//tran=dao.getSession().beginTransaction();
-            ///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
+			///tran=((BusinessdemandDAO) businessdemandDAO).getSession().beginTransaction();
 			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String publisheddate=df.format(new Date());
 			businessdemand.setPublisheddate(publisheddate);
@@ -123,30 +123,30 @@ public class DemandService implements IDemandService{
 			Business business=(Business)application.getAttribute("business");
 			businessdemand.setBusiness(business);;
 			businessdemandDAO.save(businessdemand);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}
 		catch (Exception e) 
 		{
-            ///if(tran != null)
-            ///tran.rollback();
+			///if(tran != null) 
+			///tran.rollback();
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-            //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+			//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		}
 	}
 	
 	public boolean createIntention(Businessdemand businessdemand,Liaisondemand liaisondemand)//外联对商家 有意向
 	{
-        ///Transaction tran=null;
+		///Transaction tran=null;
 		//IntentionDAO dao=new IntentionDAO();
 		try
 		{
 			//tran=dao.getSession().beginTransaction();
-            ///tran=((IntentionDAO) intentionDAO).getSession().beginTransaction();
+			///tran=((IntentionDAO) intentionDAO).getSession().beginTransaction();
 			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			String applyDate=df.format(new Date());
 			Intention intention=new Intention();
@@ -157,45 +157,46 @@ public class DemandService implements IDemandService{
 			intention.setWhoApply(false);
 			System.out.println("set successfully");
 			intentionDAO.save(intention);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}
 		catch (Exception e) 
 		{
-            ///if(tran != null)
-            ///tran.rollback();
+			///if(tran != null) 
+			///tran.rollback();
 			return false;
 		} 
 		finally 
 		{
 			//dao.getSession().close();
-            //((IntentionDAO) intentionDAO).getSession().close();
-        }
-    }
-
-    public boolean BusinesscreateIntention(Businessdemand businessdemand, Liaisondemand liaisondemand)//商家创建需求
-    {
-        //Transaction tran=null;
-        //IntentionDAO dao=new IntentionDAO();
-        try {
-            //tran=dao.getSession().beginTransaction();
-            DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            String applyDate = df.format(new Date());
-            Intention intention = new Intention();
-            intention.setApplyDate(applyDate);
-            intention.setBusinessdemand(businessdemand);
-            intention.setLiaisondemand(liaisondemand);
-            intention.setStatus("待回复");
-            intention.setWhoApply(true);
-            //dao.save(intention);
-            //tran.commit();
-            return true;
-        } catch (Exception e) {
-            //if(tran != null) tran.rollback();
-            return false;
-        } finally {
-            //dao.getSession().close();
-        }
+			//((IntentionDAO) intentionDAO).getSession().close();
+		}
+	}
+	public boolean BusinesscreateIntention(Businessdemand businessdemand,Liaisondemand liaisondemand)//商家创建需求
+	{
+		//Transaction tran=null;
+		//IntentionDAO dao=new IntentionDAO();
+		try
+		{
+			//tran=dao.getSession().beginTransaction();
+			DateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			String applyDate=df.format(new Date());
+			Intention intention=new Intention();
+			intention.setApplyDate(applyDate);
+			intention.setBusinessdemand(businessdemand);
+			intention.setLiaisondemand(liaisondemand);
+			intention.setStatus("待回复");
+			intention.setWhoApply(true);
+			intentionDAO.save(intention);
+			//dao.save(intention);
+			//tran.commit();
+			return true;
+		}catch (Exception e) {
+			//if(tran != null) tran.rollback();
+			return false;
+			} finally {
+			//dao.getSession().close();
+			}
 	}
 	public List findliaisondemand()   //显示外联已有的需求
 	{
@@ -203,11 +204,11 @@ public class DemandService implements IDemandService{
 		Liaisonuser liaisonuser=(Liaisonuser)application.getAttribute("liaisonuser");
 		//LiaisondemandDAO dao=new LiaisondemandDAO();
 		hql="from Liaisondemand demand WHERE demand.liaisonuser.liaisonuserID="+liaisonuser.getLiaisonuserID();
-
-
-        List list=liaisondemandDAO.findByHql(hql);
-
-        return list;
+		
+		
+		List list=liaisondemandDAO.findByHql(hql);
+	
+		return list;
 	}
 	public List findall()  //点击首页显示所有商家意向
 	{
@@ -218,10 +219,10 @@ public class DemandService implements IDemandService{
 				+ "demand.maxcapital,demand.overallnum,demand.status,demand.business.businessID,"
 				+ "shop.shopID,shop.shopname,shop.qualification,shop.shoptype,shop.shopdetail,shop.shopfront,shop.address) "
 				+ "from Businessdemand demand,Shop shop Where demand.business.businessID=shop.business.businessID";
-
-        list=businessdemandDAO.findByHql(hql);
-
-        //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+	
+		list=businessdemandDAO.findByHql(hql);
+		
+		//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		return list;
 	}
 	
@@ -234,14 +235,14 @@ public class DemandService implements IDemandService{
 				+ "from Shop shop,Businessdemand businessdemand,Business business,Liaisonuser liaisonuser,"
 				+ "Liaison liaison,Liaisondemand liaisondemand,Intention intention"
 				+ " where liaisonuser.liaisonuserID="+liaisonuser.getLiaisonuserID()
-				+ " and liaisonuser.liaisonuserID=liaison.liaisonuser.liaisonuserID and liaisonuser.liaisonuserID=liaisondemand.liaisonuser.liaisonuserID" +
-                " and intention.liaisondemand.liaisondemandID=liaisondemand.liaisondemandID and intention.status='待回复'" +
+				+ " and liaisonuser.liaisonuserID=liaison.liaisonuser.liaisonuserID and liaisonuser.liaisonuserID=liaisondemand.liaisonuser.liaisonuserID" + 
+				" and intention.liaisondemand.liaisondemandID=liaisondemand.liaisondemandID and intention.status='待回复'" + 
 				" and intention.businessdemand.businessdemandID=businessdemand.businessdemandID and businessdemand.business.businessID=business.businessID" + 
 				" and business.businessID=shop.business.businessID and intention.whoApply=1";
-
-        List list=businessdemandDAO.findByHql(hql);
-
-        //((BusinessdemandDAO) businessdemandDAO).getSession().close();
+		
+		List list=businessdemandDAO.findByHql(hql);
+		
+		//((BusinessdemandDAO) businessdemandDAO).getSession().close();
 		return list;
 	}
 	public List findliaisonrequest() //显示外联对商家的请求
@@ -254,12 +255,12 @@ public class DemandService implements IDemandService{
 				+ " from Liaison liaison,Liaisondemand liaisondemand,Liaisonuser liaisonuser,Business business,Shop shop,Businessdemand businessdemand,Intention intention"
 				+ " where business.businessID="+business.getBusinessID()
 				+ " and business.businessID=shop.business.businessID and business.businessID=businessdemand.business.businessID"
-                + " and intention.businessdemand.businessdemandID=businessdemand.businessdemandID and intention.status='待回复'"
+				+ " and intention.businessdemand.businessdemandID=businessdemand.businessdemandID and intention.status='待回复'"
 				+ " and intention.liaisondemand.liaisondemandID=liaisondemand.liaisondemandID and liaisondemand.liaisonuser.liaisonuserID=liaisonuser.liaisonuserID"
 				+ " and liaisonuser.liaisonuserID=liaison.liaisonuser.liaisonuserID and intention.whoApply=0";
 		List list=liaisondemandDAO.findByHql(hql);
-
-        //((LiaisondemandDAO) liaisondemandDAO).getSession().close();
+		
+		//((LiaisondemandDAO) liaisondemandDAO).getSession().close();
 		return list;
 	}
 	public Liaison findLiaisonbyID(int liaisonID) //用外联ID查找外联组织信息
@@ -267,10 +268,10 @@ public class DemandService implements IDemandService{
 		String hql;
 		//LiaisonDAO dao=new LiaisonDAO();
 		hql="from Liaison liaison where liaison.liaisonID="+liaisonID;
-
-        List list=liaisonDAO.findByHql(hql);
-
-        //((LiaisonDAO) liaisonDAO).getSession().close();
+		
+		List list=liaisonDAO.findByHql(hql);
+		
+		//((LiaisonDAO) liaisonDAO).getSession().close();
 		return (Liaison)list.get(0);
 	}
 	public Shop findShopbyID(int shopID)//用店铺ID查找店铺信息
@@ -278,10 +279,10 @@ public class DemandService implements IDemandService{
 		String hql;
 		//ShopDAO dao=new ShopDAO();
 		hql="from Shop shop where shop.shopID="+shopID;
-
-        List list=shopDAO.findByHql(hql);
-
-        //((ShopDAO) shopDAO).getSession().close();
+		
+		List list=shopDAO.findByHql(hql);
+		
+		//((ShopDAO) shopDAO).getSession().close();
 		return (Shop)list.get(0);
 	}
 	public LiaisonDetail findliaisonbyID(int liaisonuserID)//用外联ID查找外联信息
@@ -292,8 +293,8 @@ public class DemandService implements IDemandService{
 				+ " from Liaison liaison,Liaisonuser liaisonuser"
 				+ " where liaison.liaisonuser.liaisonuserID="+liaisonuserID;
 		List list=liaisonDAO.findByHql(hql);
-
-        //((LiaisonDAO) liaisonDAO).getSession().close();
+		
+		//((LiaisonDAO) liaisonDAO).getSession().close();
 		return (LiaisonDetail)list.get(0);
 	}
 	public Intention findIntentionbyID(int intentionID) //用intentionID查找对应intention
@@ -301,25 +302,25 @@ public class DemandService implements IDemandService{
 		String hql;
 		//IntentionDAO dao=new IntentionDAO();
 		hql="from Intention intention where intention.intentionID="+intentionID;
-
-        List list=intentionDAO.findByHql(hql);
-
-        //((IntentionDAO) intentionDAO).getSession().close();
+		
+		List list=intentionDAO.findByHql(hql);
+		
+		//((IntentionDAO) intentionDAO).getSession().close();
 		return (Intention)list.get(0);
 	}
 	public boolean rejectBusinessOrnot(int reject,int intentionID)  //拒绝或是接受请求
 	{
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		//OrderDAO dao=new OrderDAO();
 		//IntentionDAO intentiondao=new IntentionDAO();
 		//LiaisondemandDAO liadao=new LiaisondemandDAO();
-        //BusinessdemandDAO businessdao=new BusinessdemandDAO();
+	    //BusinessdemandDAO businessdao=new BusinessdemandDAO();
 		Intention intention=(Intention)findIntentionbyID(intentionID);
 		if(reject==0)
 		{
 			try
 			{
-                ///tran=((OrderDAO) orderDAO).getSession().beginTransaction();
+				///tran=((OrderDAO) orderDAO).getSession().beginTransaction();
 				Theorder order=new Theorder();
 				order.setBusinessdemand(intention.getBusinessdemand());
 				order.setLiaisondemand(intention.getLiaisondemand());
@@ -334,75 +335,74 @@ public class DemandService implements IDemandService{
 				liaisondemand.setStatus("匹配成功");
 				liaisondemandDAO.update(liaisondemand);
 				businessdemandDAO.update(businessdemand);
-                order.setStatus("进行中");
+				order.setStatus("进行中");
 				orderDAO.save(order);
 				intentionDAO.update(intention);
-                if (intention.getWhoApply() == true) //外联接受商家
-                {
-                    List list = findoverliaison(liaisondemand.getLiaisondemandID());
-                    updateIntention(list);
-                }
-                if (intention.getWhoApply() == false)//商家接受外联
-                {
-                    List list = findoverbusiness(businessdemand.getBusinessdemandID());
-                    updateIntention(list);
-                }
+				if(intention.getWhoApply()==true) //外联接受商家
+				{
+					List list=findoverliaison(liaisondemand.getLiaisondemandID());
+					updateIntention(list );
+				}
+				if(intention.getWhoApply()==false)//商家接受外联
+				{
+					List list=findoverbusiness(businessdemand.getBusinessdemandID());
+					updateIntention(list );
+				}
 
-                ///tran.commit();
+				///tran.commit();
 				return true;
 			}
 			catch (Exception e) 
 			{
-                ///if(tran != null)
-                ///tran.rollback();
+				///if(tran != null) 
+				///tran.rollback();
 				return false;
 			} 
 			finally 
 			{
-                //((OrderDAO) orderDAO).getSession().close();
+				//((OrderDAO) orderDAO).getSession().close();
 			}
 		}
 		else
 		{
 			try
 			{
-                ///tran=((IntentionDAO) intentionDAO).getSession().beginTransaction();
+				///tran=((IntentionDAO) intentionDAO).getSession().beginTransaction();
 				intention.setStatus("拒绝");
 				intentionDAO.update(intention);
-                ///tran.commit();
+				///tran.commit();
 				return true;
 			}catch (Exception e) {
-                ///if(tran != null) tran.rollback();
+				///if(tran != null) tran.rollback();
 				return false;
 				} finally {
-                //((OrderDAO) orderDAO).getSession().close();
-            }
-        }
-    }
-
-    public List findoverbusiness(int businessdemandID)//查找多余的商家需求申请
-    {
-        String hql;
-        hql = "from Intention intention where intention.businessdemand.businessdemandID=" + businessdemandID + " AND intention.status='待回复'";
-        List list = intentionDAO.findByHql(hql);
-        return list;
-    }
-
-    public List findoverliaison(int liaisondemandID)//查找多余的外联需求申请
-    {
-        String hql;
-        hql = "from Intention intention where intention.liaisondemand.liaisondemandID=" + liaisondemandID + " AND intention.status='待回复'";
-        List list = intentionDAO.findByHql(hql);
-        return list;
-    }
-
-    public void updateIntention(List list)//修改多余的需求申请
-    {
-        Intention intention;
-        for (int i = 0; i < list.size(); i++) {
-            intention = (Intention) list.get(i);
-            intention.setStatus("拒绝");
-            intentionDAO.update(intention);
+				//((OrderDAO) orderDAO).getSession().close();
+				}
+		}
+	}
+	
+	public List findoverbusiness(int businessdemandID)//查找多余的商家需求申请
+	{
+		String hql;
+		hql="from Intention intention where intention.businessdemand.businessdemandID="+businessdemandID+" AND intention.status='待回复'";
+		List list=intentionDAO.findByHql(hql);
+		return list;
+	}
+	public List findoverliaison(int liaisondemandID)//查找多余的外联需求申请
+	{
+		String hql;
+		hql="from Intention intention where intention.liaisondemand.liaisondemandID="+liaisondemandID+" AND intention.status='待回复'";
+		List list=intentionDAO.findByHql(hql);
+		return list;
+	}
+	public void updateIntention(List list )//修改多余的需求申请
+	{
+		Intention intention;
+		for(int i=0;i<list.size();i++)
+		{
+			intention=(Intention)list.get(i);
+			intention.setStatus("拒绝");
+			intentionDAO.update(intention);
 		}
 	}
 }

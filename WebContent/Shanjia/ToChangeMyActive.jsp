@@ -221,7 +221,7 @@ td
 		</div>
 		<div class="Card-Body" >
 			<div class="Center-Form" >
-                <s:form class="Center-Form" action="updateShopActiveInfo" method="post" onsubmit="return sb1();">
+				<s:form class="Center-Form" action ="updateShopActiveInfo" method="post" onsubmit="return sb1();">
 					<table>
 						<tr><s:hidden name="shopactive.shopactiveID" value="%{#application.Shopactive.shopactiveID}"/></tr>
 						<tr><s:hidden name="shopactive.publisheddate" value="%{#application.Shopactive.publisheddate}"/></tr>
@@ -230,14 +230,11 @@ td
 					<table class="Center-Form">
 						<tr>
 							<td>计划名称</td>
-                            <td><s:textfield name="shopactive.title" value="%{#application.Shopactive.title}" id="title"
-                                             label="计划名称"/></td>
+							<td ><s:textfield name="shopactive.title" value="%{#application.Shopactive.title}" id="title" label="计划名称"/></td>
 						</tr>
 						<tr>
 							<td>计划简介</td>
-                            <td><s:textfield name="shopactive.description"
-                                             value="%{#application.Shopactive.description}" id="description"
-                                             label="计划简介"/></td>
+							<td><s:textfield name="shopactive.description" value="%{#application.Shopactive.description}" id="description" label="计划简介"/></td>
 						</tr>					
 						<tr>
 							<td></td>
@@ -264,27 +261,26 @@ $(document).ready(function(){
 	    $(".show").slideToggle("slow");
 	  });
 	});
-
-function sb1() {
-    var title = document.getElementById("title");
-    var description = document.getElementById("description");
-
-    if (trim(title.value) == null || trim(title.value) == "") {
-        alert("请输入计划题目");
-        title.focus();
-        return false;
-    }
-    if (trim(description.value) == null || trim(description.value) == "") {
-        alert("请输入计划简介");
-        description.focus();
-        return false;
-    }
-
-    return true;
-}
-
-function trim(str) { //删除左右两端的空格
-    return str.replace(/(^\s*)|(\s*$)/g, "");
-}
+	function sb1(){	    
+	    var title = document.getElementById("title");
+	    var description=document.getElementById("description");
+	
+	    if(trim(title.value)==null || trim(title.value)==""){
+	        alert("请输入计划题目");
+	        title.focus();
+	        return false;
+	    }
+	    if(trim(description.value)==null || trim(description.value)=="")
+	        {
+	        alert("请输入计划简介");
+	        description.focus();
+	        return false;
+	    }
+	    
+	    return true;
+	}
+	function trim(str){ //删除左右两端的空格
+	     return str.replace(/(^\s*)|(\s*$)/g, "");
+	}
 </script>
 </html>

@@ -46,8 +46,8 @@ public class AdminService implements IAdminService{
 				+ "from Liaisonuser liaisonuser,Liaison liaison "
 				+ "WHERE liaisonuser.liaisonuserID=liaison.liaisonuser.liaisonuserID and liaisonuser.auditing=0";
 		list=liaisonuserDAO.findByHql(hql);
-
-        //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+	
+		//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
 		return list;
 		
 	}
@@ -61,10 +61,10 @@ public class AdminService implements IAdminService{
 				+ ")"
 				+ "from Business business,Shop shop  "
 				+ "WHERE business.businessID=shop.business.businessID and business.auditing=0";
-
-        list=businessDAO.findByHql(hql);
-
-        //((BusinessDAO) businessDAO).getSession().close();
+		
+		list=businessDAO.findByHql(hql);
+		
+		//((BusinessDAO) businessDAO).getSession().close();
 		return list;
 		
 	}
@@ -73,40 +73,40 @@ public class AdminService implements IAdminService{
 	{
 		//LiaisonuserDAO dao=new LiaisonuserDAO();
 		String hql= "from Liaisonuser where liaisonuserID=" + liaisonuserID;
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
 			List list=liaisonuserDAO.findByHql(hql);
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
-            ///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
+			//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+			///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
 			Liaisonuser liaisonuser=(Liaisonuser)list.get(0);
-            ///tran.commit();
+			///tran.commit();
 			return liaisonuser;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return null;
 			} finally {
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+				//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
 			}
 	}
 	public Business findbusiness(int businessID)
 	{
 		//BusinessDAO dao=new BusinessDAO();
 		String hql= "from Business where businessID=" + businessID;
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
 			List list=businessDAO.findByHql(hql);
-            //((BusinessDAO) businessDAO).getSession().close();
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			//((BusinessDAO) businessDAO).getSession().close();
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			Business business=(Business)list.get(0);
-            ///tran.commit();
+			///tran.commit();
 			return business;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return null;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+				//((BusinessDAO) businessDAO).getSession().close();
 			}
 	}
 	
@@ -120,38 +120,38 @@ public class AdminService implements IAdminService{
 		
 		//LiaisonuserDAO dao=new LiaisonuserDAO();
 		Liaisonuser liaisonuser=findliaisonuser(liaisonuserID);
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
-            ///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
+			///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
 			liaisonuser.setAuditing(1);
 			liaisonuserDAO.update(liaisonuser);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+				//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
 			}
 	}
 	public boolean refuseliaison(int liaisonuserID)
 	{
 		//LiaisonuserDAO dao=new LiaisonuserDAO();
 		Liaisonuser liaisonuser=findliaisonuser(liaisonuserID);
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
-            ///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
+			///tran=((LiaisonuserDAO) liaisonuserDAO).getSession().beginTransaction();
 			liaisonuser.setAuditing(-1);
 			liaisonuserDAO.update(liaisonuser);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((LiaisonuserDAO) liaisonuserDAO).getSession().close();
+				//((LiaisonuserDAO) liaisonuserDAO).getSession().close();
 			}
 	}
 	
@@ -160,38 +160,38 @@ public class AdminService implements IAdminService{
 	{
 		//BusinessDAO dao=new BusinessDAO();
 		Business business=findbusiness(businessID);
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			business.setAuditing(1);
 			businessDAO.update(business);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+				//((BusinessDAO) businessDAO).getSession().close();
 			}
 	}
 	public boolean refusebusiness(int businessID)
 	{
 		//BusinessDAO dao=new BusinessDAO();
 		Business business=findbusiness(businessID);
-        ///Transaction tran = null;
+		///Transaction tran = null; 
 		try
 		{
-            ///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
+			///tran=((BusinessDAO) businessDAO).getSession().beginTransaction();
 			business.setAuditing(-1);
 			businessDAO.update(business);
-            ///tran.commit();
+			///tran.commit();
 			return true;
 		}catch (Exception e) {
-            ///if(tran != null) tran.rollback();
+			///if(tran != null) tran.rollback();
 			return false;
 			} finally {
-            //((BusinessDAO) businessDAO).getSession().close();
+				//((BusinessDAO) businessDAO).getSession().close();
 			}
 	}
 }
